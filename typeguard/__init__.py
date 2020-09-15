@@ -50,15 +50,3 @@ def checktype(fn):
         return fn(*args, **kwargs)
 
     return wrapper
-
-
-#@args_printer
-@checktype
-def test(a:int, b:str):
-    #print("Prova")
-    pass
-
-
-if __name__ == "__main__":
-    test(1, "1")
-    #tests(a=1, b=1)
