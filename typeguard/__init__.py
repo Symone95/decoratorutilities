@@ -32,7 +32,7 @@ def checktype(fn):
 
         # Controllo parametri posizionali (args)
         if len(args) > 0:
-            if len(fn.__annotations__) == len(args):
+            if len(fn.__annotations__) == len(args): #FIXME 1) tipo di ritorno no, 2) non hai considerato i kwargs
                 for index, k in enumerate(fn.__annotations__):
                     if fn.__annotations__[k] != type(args[index]):
                         raise TypeError(
@@ -61,4 +61,4 @@ def test(a:int, b:str):
 
 if __name__ == "__main__":
     test(1, "1")
-    #test(a=1, b=1)
+    #tests(a=1, b=1)

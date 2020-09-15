@@ -2,22 +2,23 @@ import pytest
 from typeguard import checktype
 
 
-# Guardare anche la libreria typing
-
 def test_base_param():
 
     @checktype
-    def a(b: int):
-        print("CHIAMO LA FUNC")
+    def a(a: int, b: int):
         return 1
 
-    # E' il try/except di pytest
-    with pytest.raises(TypeError):
-        print("SONO QUA 1")
-        a("Invalid")
+    assert a(5, 6) == 1
 
-    assert a(5) == 1
-    #assert a("r") == "TypeError(\"got: 'r' of <class 'str'> instance, expected <class 'str'> instance for \"b\" parameter\")"
+
+def test_base_params():
+    @checktype
+    def a(a: int, b: int):
+        return 1
+
+    with pytest.raises(TypeError):
+        a("invalid", b="Invalid")
+
 
 
 """

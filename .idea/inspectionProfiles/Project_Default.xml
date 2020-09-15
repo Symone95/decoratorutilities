@@ -1,0 +1,48 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="6">
+            <item index="0" class="java.lang.String" itemvalue="lazy-object-proxy" />
+            <item index="1" class="java.lang.String" itemvalue="mccabe" />
+            <item index="2" class="java.lang.String" itemvalue="pylint" />
+            <item index="3" class="java.lang.String" itemvalue="wrapt" />
+            <item index="4" class="java.lang.String" itemvalue="isort" />
+            <item index="5" class="java.lang.String" itemvalue="astroid" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="E501" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyStubPackagesAdvertiser" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <list>
+          <option value="PyGObject-stubs==0.0.2" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="deezer.resources.Album.cover_xl" />
+          <option value="deezer.resources.Artist.name" />
+          <option value="deezer.resources.Album.title" />
+          <option value="deezer.resources.Track.title" />
+          <option value="deezer.resources.Album.release_date" />
+          <option value="deezer.resources.Album.genre_id" />
+          <option value="urllib.parse" />
+          <option value="deezer.resources.Artist.picture_xl" />
+          <option value="deezer.resources.Track.trac_position" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

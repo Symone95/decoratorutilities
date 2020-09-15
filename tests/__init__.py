@@ -1,12 +1,2 @@
-import pytest
-from typeguard import checktype
-print("HELLO")
+from . import base
 
-def test_base_param():
-
-    @checktype
-    def a(b: int):
-        pass
-
-    with pytest.raises(TypeError):
-        a("ciao")
