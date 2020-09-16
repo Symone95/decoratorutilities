@@ -35,14 +35,15 @@ def checktype(fn):
         if len(args) > 0:
             for value, (_key, _type) in zip(args, fn.__annotations__.items()):
                 if not isinstance(value, _type):
-                    raise TypeError(f"Got: \'{value}\' of {_key}={type(value)} instance, expected {_type} instance for \"{_type}\" parameter")
+                    raise TypeError(f"pot: \'{value}\' of {type(value)} instance, expected {_type} instance for \"{_key}\" parameter")
 
         # Controllo parametri nominali (kwargs)
         if len(kwargs) > 0:
             #print("Stampo tutti i kwargs", fn.__annotations__, kwargs)
             for k in kwargs:
-                if type(kwargs[k]) != fn.__annotations__[k]:
+                if not isinstance(kwargs[k], fn.__annotations__[k]):
                     raise TypeError(f"Got: \'{kwargs[k]}\' of {type(kwargs[k])} instance, expected {fn.__annotations__[k]} instance for \"{k}\" parameter")
+
 
         # Controllo il tipo di dato del return
         fn_return = type(fn(*args, **kwargs))
@@ -58,7 +59,7 @@ def checktype(fn):
 @checktype
 def test(a:int, b:str) -> int:
     #print("Prova")
-    return "1"
+    return 1
 
 
 if __name__ == "__main__":
