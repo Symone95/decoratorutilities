@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04d4f00e-47b5-4ef4-b5a5-105eb39a0ae2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/TypeGuard.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TypeGuard.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/base.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/typeguard/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/typeguard/__init__.py" afterDir="false" />
     </list>
@@ -65,7 +60,7 @@
       </EXTENSION>
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;-s&quot;" />
       <option name="_new_target" value="&quot;base&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
@@ -133,29 +128,65 @@
       <screen x="0" y="0" width="2880" height="1704" />
     </state>
     <state x="859" y="131" width="1151" height="1520" key="#TestSuite/0.0.2880.1704@0.0.2880.1704" timestamp="1600184396728" />
-    <state x="473" y="209" width="1912" height="1134" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600184409968">
+    <state x="473" y="60" width="1912" height="1235" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600248268101">
       <screen x="0" y="0" width="2880" height="1704" />
     </state>
-    <state x="473" y="209" width="1912" height="1134" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2880.1704@0.0.2880.1704" timestamp="1600184409968" />
-    <state width="2843" height="425" key="GridCell.Tab.0.bottom" timestamp="1600184863446">
+    <state x="473" y="60" width="1912" height="1235" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2880.1704@0.0.2880.1704" timestamp="1600248268101" />
+    <state width="2843" height="615" key="GridCell.Tab.0.bottom" timestamp="1600248254007">
       <screen x="0" y="0" width="2880" height="1704" />
     </state>
-    <state width="2843" height="425" key="GridCell.Tab.0.bottom/0.0.2880.1704@0.0.2880.1704" timestamp="1600184863446" />
-    <state width="2843" height="425" key="GridCell.Tab.0.center" timestamp="1600184863445">
+    <state width="2843" height="615" key="GridCell.Tab.0.bottom/0.0.2880.1704@0.0.2880.1704" timestamp="1600248254007" />
+    <state width="2843" height="615" key="GridCell.Tab.0.center" timestamp="1600248254006">
       <screen x="0" y="0" width="2880" height="1704" />
     </state>
-    <state width="2843" height="425" key="GridCell.Tab.0.center/0.0.2880.1704@0.0.2880.1704" timestamp="1600184863445" />
-    <state width="2843" height="425" key="GridCell.Tab.0.left" timestamp="1600184863445">
+    <state width="2843" height="615" key="GridCell.Tab.0.center/0.0.2880.1704@0.0.2880.1704" timestamp="1600248254006" />
+    <state width="2843" height="615" key="GridCell.Tab.0.left" timestamp="1600248254006">
       <screen x="0" y="0" width="2880" height="1704" />
     </state>
-    <state width="2843" height="425" key="GridCell.Tab.0.left/0.0.2880.1704@0.0.2880.1704" timestamp="1600184863445" />
-    <state width="2843" height="425" key="GridCell.Tab.0.right" timestamp="1600184863446">
+    <state width="2843" height="615" key="GridCell.Tab.0.left/0.0.2880.1704@0.0.2880.1704" timestamp="1600248254006" />
+    <state width="2843" height="615" key="GridCell.Tab.0.right" timestamp="1600248254006">
       <screen x="0" y="0" width="2880" height="1704" />
     </state>
-    <state width="2843" height="425" key="GridCell.Tab.0.right/0.0.2880.1704@0.0.2880.1704" timestamp="1600184863446" />
-    <state x="548" y="188" width="1784" height="1297" key="SettingsEditor" timestamp="1600184356201">
+    <state width="2843" height="615" key="GridCell.Tab.0.right/0.0.2880.1704@0.0.2880.1704" timestamp="1600248254006" />
+    <state width="2843" height="528" key="GridCell.Tab.1.bottom" timestamp="1600248175202">
       <screen x="0" y="0" width="2880" height="1704" />
     </state>
-    <state x="548" y="188" width="1784" height="1297" key="SettingsEditor/0.0.2880.1704@0.0.2880.1704" timestamp="1600184356201" />
+    <state width="2843" height="528" key="GridCell.Tab.1.bottom/0.0.2880.1704@0.0.2880.1704" timestamp="1600248175202" />
+    <state width="2843" height="528" key="GridCell.Tab.1.center" timestamp="1600248175202">
+      <screen x="0" y="0" width="2880" height="1704" />
+    </state>
+    <state width="2843" height="528" key="GridCell.Tab.1.center/0.0.2880.1704@0.0.2880.1704" timestamp="1600248175202" />
+    <state width="2843" height="528" key="GridCell.Tab.1.left" timestamp="1600248175202">
+      <screen x="0" y="0" width="2880" height="1704" />
+    </state>
+    <state width="2843" height="528" key="GridCell.Tab.1.left/0.0.2880.1704@0.0.2880.1704" timestamp="1600248175202" />
+    <state width="2843" height="528" key="GridCell.Tab.1.right" timestamp="1600248175202">
+      <screen x="0" y="0" width="2880" height="1704" />
+    </state>
+    <state width="2843" height="528" key="GridCell.Tab.1.right/0.0.2880.1704@0.0.2880.1704" timestamp="1600248175202" />
+    <state x="548" y="180" width="1784" height="1297" key="SettingsEditor" timestamp="1600247066683">
+      <screen x="0" y="0" width="2880" height="1704" />
+    </state>
+    <state x="548" y="180" width="1784" height="1297" key="SettingsEditor/0.0.2880.1704@0.0.2880.1704" timestamp="1600247066683" />
+    <state x="643" y="239" width="1583" height="1244" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1600248112368">
+      <screen x="0" y="0" width="2880" height="1704" />
+    </state>
+    <state x="643" y="239" width="1583" height="1244" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.2880.1704@0.0.2880.1704" timestamp="1600248112368" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/typeguard/__init__.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/typeguard/__init__.py</url>
+          <line>37</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

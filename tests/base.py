@@ -17,11 +17,16 @@ def test_base_params():
         return 1
 
     with pytest.raises(TypeError):
+        a("invalid", "Invalid")
+
+    with pytest.raises(TypeError):
         a("invalid", b="Invalid")
 
+    with pytest.raises(TypeError):
+        a(a="invalid", b="Invalid")
 
 
-"""
+
 def test_pos_named_param():
 
     @checktype
@@ -48,4 +53,11 @@ def test_base_return():
     with pytest.raises(TypeError):
         a()
 
-"""
+
+def test_valid_return():
+
+    @checktype
+    def a() -> int:
+        return 0
+
+    assert a() == 0

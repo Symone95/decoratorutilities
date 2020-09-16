@@ -29,15 +29,14 @@ def checktype(fn):
     """
     #print("Annotations: ", fn.__annotations__)
 
-    # FIXME 1) tipo di ritorno no, 2) non hai considerato i kwargs
     def wrapper(*args, **kwargs):
 
         # Controllo parametri posizionali (args)
         if len(args) > 0:
-            c = dict(zip(fn.__annotations__, args))
-            for x in c:
-                if fn.__annotations__[x] != type(c[x]):
-                    raise TypeError(f"Got: \'{c[x]}\' of {type(x)} instance, expected {fn.__annotations__[x]} instance for \"{x}\" parameter")
+            for value, (_key, _type) in zip(args, fn.__annotations__.items()):
+                print('=> ', value, _key, _type)
+                if not isinstance(value, _type):
+                    raise TypeError(f"Got: \'{value}\' of {_key}={type(value)} instance, expected {_type} instance for \"{_type}\" parameter")
 
         # Controllo parametri nominali (kwargs)
         if len(kwargs) > 0:
