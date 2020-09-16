@@ -61,3 +61,16 @@ def test_valid_return():
         return 0
 
     assert a() == 0
+
+glob = 0
+
+def test_unique_call():
+
+    @checktype
+    def a() -> int:
+        global glob
+        glob += 1
+        return glob
+
+    assert a() == 1
+    assert a() == 2
