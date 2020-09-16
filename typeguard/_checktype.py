@@ -7,7 +7,7 @@ def checktype(fn):
     :return:
     """
 
-    @wraps
+    @wraps(fn)
     def wrapper(*args, **kwargs):
         if len(args) > 0:
             for value, (_key, _type) in zip(args, fn.__annotations__.items()):
