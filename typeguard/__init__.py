@@ -34,7 +34,6 @@ def checktype(fn):
         # Controllo parametri posizionali (args)
         if len(args) > 0:
             for value, (_key, _type) in zip(args, fn.__annotations__.items()):
-                print('=> ', value, _key, _type)
                 if not isinstance(value, _type):
                     raise TypeError(f"Got: \'{value}\' of {_key}={type(value)} instance, expected {_type} instance for \"{_type}\" parameter")
 
