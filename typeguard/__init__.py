@@ -48,7 +48,7 @@ def checktype(fn):
 
         # Controllo il tipo di dato del return
         fn_return = type(fn(*args, **kwargs))
-        if fn_return != fn.__annotations__["return"]:
+        if "return" in fn.__annotations__ and fn_return != fn.__annotations__["return"]:
             raise TypeError(
                 f"Got: \'{fn_return}\' return type, expected {fn.__annotations__['return']} return type for \"{fn.__name__}\" function")
 
