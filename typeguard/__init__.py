@@ -23,30 +23,45 @@ def args_printer(fn):
 
 def checktype(fn):
     """
-    Funzione per il controllo del tipo di dato passato come parametro in base alla firma del metodo
+    Funzione per il controllo del tipo di dato passato come parametro e del return in base alla firma del metodo
     :param fn:
     :return:
     """
+    #print("Annotations: ", fn.__annotations__)
 
+    # FIXME 1) tipo di ritorno no, 2) non hai considerato i kwargs
     def wrapper(*args, **kwargs):
 
         # Controllo parametri posizionali (args)
         if len(args) > 0:
-            if len(fn.__annotations__) == len(args): #FIXME 1) tipo di ritorno no, 2) non hai considerato i kwargs
-                for index, k in enumerate(fn.__annotations__):
-                    if fn.__annotations__[k] != type(args[index]):
-                        raise TypeError(
-                            f"got: \'{args[index]}\' of {type(args[index])} instance, expected {type(k)} instance for \"{k}\" parameter")
-            else:
-                print(f"Missing parameter: got {len(args)} expected {len(fn.__annotations__)} parameter in {fn.__name__} function")
+            c = dict(zip(fn.__annotations__, args))
+            for x in c:
+                if fn.__annotations__[x] != type(c[x]):
+                    raise TypeError(f"Got: \'{c[x]}\' of {type(x)} instance, expected {fn.__annotations__[x]} instance for \"{x}\" parameter")
 
         # Controllo parametri nominali (kwargs)
         if len(kwargs) > 0:
             #print("Stampo tutti i kwargs", fn.__annotations__, kwargs)
-            for k in fn.__annotations__:
+            for k in kwargs:
                 if type(kwargs[k]) != fn.__annotations__[k]:
                     raise TypeError(f"Got: \'{kwargs[k]}\' of {type(kwargs[k])} instance, expected {fn.__annotations__[k]} instance for \"{k}\" parameter")
+
+        # Controllo il tipo di dato del return
+        fn_return = type(fn(*args, **kwargs))
+        if fn_return != fn.__annotations__["return"]:
+            raise TypeError(
+                f"Got: \'{fn_return}\' return type, expected {fn.__annotations__['return']} return type for \"{fn.__name__}\" function")
 
         return fn(*args, **kwargs)
 
     return wrapper
+
+#@args_printer
+@checktype
+def test(a:int, b:str) -> int:
+    #print("Prova")
+    return "1"
+
+
+if __name__ == "__main__":
+    test(1, b="1")
