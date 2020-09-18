@@ -4,6 +4,22 @@ from typeguard import overload
 # modulo # scope # nome funzione
 
 
+def test_with_mixing_positions_name_param():
+
+    @overload
+    def x(a: int, b: str, c: dict):
+        return 1
+
+    @overload
+    def x(a: int):
+        return 1
+
+    assert x(c={}, b='stringa', a=0) == 1
+    # assert x(a=0, b='stringa', c={}) == 1
+
+
+"""
+FUNZIONA
 def test_base_overload():
 
     @overload
@@ -33,6 +49,7 @@ def test_base_overload():
     assert b("Ciao", 1) == 5
 
 
+DA RIVEDERE
 def test_calling_missing_signature_method():
 
     @overload
@@ -43,9 +60,8 @@ def test_calling_missing_signature_method():
     def a(a: str):
         return 1
 
-    with pytest.raises(TypeError):
-        a([1])
-
+    with pytest.raises(ValueError): #TypeError,
+        assert a([1]) is None
 
 def test_defining_same_signature_function():
 
@@ -57,14 +73,4 @@ def test_defining_same_signature_function():
         @overload
         def a(a: int):
             return 0
-
-def test_with_mixing_positions_name_param():
-
-    def x(a: int, b: str, c: dict):
-        return 1
-
-    def x(a: int):
-        return 1
-
-    assert x(c={}, b='stringa', a=0) == 1
-    # assert x(a=0, b='stringa', c={}) == 1
+"""

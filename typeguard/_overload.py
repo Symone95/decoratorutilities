@@ -2,8 +2,7 @@ from functools import wraps
 
 implemented_functions = {}
 
-#FIXME: scoped overload
-#FIXME: parameter named ored
+#FIXME: parameter named order
 
 
 def overload(fn):
@@ -12,12 +11,15 @@ def overload(fn):
     :param fn:
     :return:
     """
+    fn_name = f"{fn.__module__}_{fn.__name__}"
+
     # Funzione chiamata per ogni funzione che la implementa
-    if fn.__name__ not in implemented_functions:
-        implemented_functions[fn.__name__] = []
+    if fn_name not in implemented_functions:
+        #implemented_functions[fn.__name__] = []
+        implemented_functions[fn_name] = []
 
     # Aggiungo la funzione alla chiave con lo stesso valore del nome di tale funzione, ad esempio se ci sono più funzioni nominate "a" le aggiunge nel vettore definito nella chiave "a"
-    implemented_functions[fn.__name__].append(fn)
+    implemented_functions[fn_name].append(fn)
 
     @wraps(fn)
     def wrapper(*args, **kwargs):
@@ -25,8 +27,8 @@ def overload(fn):
         available_function_list = []
 
         # Filtro tra le funzioni implementate con il nome della funzione corrente
-        if fn.__name__ in implemented_functions:
-            available_function_list = implemented_functions[fn.__name__]
+        if fn_name in implemented_functions:
+            available_function_list = implemented_functions[fn_name]
 
         # Istanzio una lista in cui metterò in ordine tutti i tipi degli args e dei kwargs passati
         fn_params = []
@@ -52,9 +54,12 @@ def overload(fn):
 
             current_fn_params = []
 
-            # Cerco tra tutti i parametri di ogni funzione e ne estraggo il type del parametro
+            # Cerco tutti i parametri di ogni funzione e ne prendo il type
             for key, val in av_fn.__annotations__.items():
+                print("KEY: ", key, " - VAL: ", val)
                 current_fn_params.append(val)
+
+            print("fn_params: ", fn_params)
 
             # Infine paragono i parametri cercati con quelli passati, se corrispondono allora ne ritorno la relativa funzione
             if fn_params == current_fn_params:
