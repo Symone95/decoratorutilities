@@ -49,3 +49,23 @@ def test_raise_missing_mocking_parameters():
         ])
         def a():
             pass
+
+
+def test_mocking_wrong_argument_decorator():
+
+    with pytest.raises(TypeError):
+        @mocking({1, 2, 3, 4})
+        def a():
+            pass
+
+
+def test_mocking_same_signature_different_return():
+
+    with pytest.raises(KeyError):
+        @mocking([
+            ((1, 2, 3), {"a": 1}, 1),
+            ((1, 2, 3), {"a": 1}, 2)
+        ])
+        def a():
+            pass
+

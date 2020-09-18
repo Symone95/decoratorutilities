@@ -1,48 +1,42 @@
 from functools import wraps
 from ._checktype import checktype
 
+
+__all__ = ['mocking']
+
 value_handler = []
 
 
 @checktype
-def check_mock(args: tuple, kwargs: dict, retr):
-    return
-
-
-def save_mock(mock: tuple):
+def save_mock(args: tuple, kwargs: dict, retr):
+    mock = (args, kwargs, retr)
     if mock not in value_handler:
         value_handler.append(mock)
     else:
-        raise KeyError(f"Tuple {mock} added yet")
+        raise KeyError(f"Parameters {mock} signature already exists")
 
 
-def is_mock_matching(args_tuple, value_handler): #, current_tuple):
+def is_mock_matching(args_tuple, mocking_value_handler):
     args, kwargs = args_tuple
-    #print("args: ", args, " - KWARGS: ", kwargs)
-    for tuple_handler in value_handler:
-        #print("CHECK: ", tuple_handler)
+
+    for tuple_handler in mocking_value_handler:
         if args in tuple_handler and kwargs in tuple_handler:
-            #print("TUPLA TROVATA: ", tuple_handler)
             return tuple_handler
     return None
 
 
+@checktype
 def mocking(mocks: list):
-    # Controllo la validità della tupla inserita come parametro
     for mock in mocks:
-        check_mock(*mock)
-        # Salvo nella lista le tuple passate
-        save_mock(mock)
+        save_mock(*mock)
 
     def fn_wrapper(fn):
 
         @wraps(fn)
         def arg_wrapper(*args, **kwargs):
-            print("value_handler: ", value_handler)
-
-            tuple = is_mock_matching((args, kwargs), value_handler)
-            if tuple:
-                return tuple[2]
+            args_tuple = is_mock_matching((args, kwargs), value_handler)
+            if args_tuple:
+                return args_tuple[2]
             else:
                 raise KeyError("Unmatched parameters: ", (args, kwargs), " -> choose between: ", value_handler)
 
