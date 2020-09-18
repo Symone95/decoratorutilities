@@ -2,6 +2,15 @@ import pytest
 from typeguard import checktype
 
 
+def test_no_annotation():
+
+    @checktype
+    def a(a):
+        return a
+
+    assert a(1) == 1
+
+
 def test_base_param():
 
     @checktype
