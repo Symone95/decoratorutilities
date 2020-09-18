@@ -1,7 +1,8 @@
 import pytest
-from typeguard import overload, checktype
+from typeguard import overload
 
 # modulo # scope # nome funzione
+
 
 def test_base_overload():
 
@@ -32,3 +33,38 @@ def test_base_overload():
     assert b("Ciao", 1) == 5
 
 
+def test_calling_missing_signature_method():
+
+    @overload
+    def a(a: int):
+        return 0
+
+    @overload
+    def a(a: str):
+        return 1
+
+    with pytest.raises(TypeError):
+        a([1])
+
+
+def test_defining_same_signature_function():
+
+    @overload
+    def a(a: int):
+        return 0
+
+    with pytest.raises(NameError):
+        @overload
+        def a(a: int):
+            return 0
+
+def test_with_mixing_positions_name_param():
+
+    def x(a: int, b: str, c: dict):
+        return 1
+
+    def x(a: int):
+        return 1
+
+    assert x(c={}, b='stringa', a=0) == 1
+    # assert x(a=0, b='stringa', c={}) == 1

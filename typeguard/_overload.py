@@ -2,6 +2,9 @@ from functools import wraps
 
 implemented_functions = {}
 
+#FIXME: scoped overload
+#FIXME: parameter named ored
+
 
 def overload(fn):
     """
