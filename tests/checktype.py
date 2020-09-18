@@ -73,4 +73,4 @@ def test_unique_call():
         return glob
 
     assert a() == 1
-    #assert a() == 2
+    assert a() == 2

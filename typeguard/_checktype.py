@@ -12,7 +12,7 @@ def checktype(fn):
         if len(args) > 0:
             for value, (_key, _type) in zip(args, fn.__annotations__.items()):
                 if not isinstance(value, _type):
-                    raise TypeError(f"pot: \'{value}\' of {type(value)} instance, expected {_type} instance for \"{_key}\" parameter")
+                    raise TypeError(f"Got: \'{value}\' of {type(value)} instance, expected {_type} instance for \"{_key}\" parameter")
 
         if len(kwargs) > 0:
             for kwarg in kwargs:
