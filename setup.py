@@ -1,19 +1,15 @@
 #from distutils.core import setup
 import setuptools
 
-#packages=['typeguard',],
-#license='Creative Commons Attribution-Noncommercial-Share Alike license',
-#long_description=open('README.md').read(),
-
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="TypeGuard", # Replace with your own username
+    name="decoratorutilities",
     version="1.0",
     author="Giovanni Cardamone, Scalamandrè Simone",
     author_email="giovanni.cardamone@sourcesense.com, simone.scalamandre@sourcesense.com",
-    description="A library to user type guard utilities to check parameters and return type, allow function overloading and function mocking at runtime",
+    description="Python library to user type guard utilities to check parameters and return type, allow function overloading and function mocking at runtime",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/pypa/sampleproject",
@@ -24,6 +20,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
-
 
 )

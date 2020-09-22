@@ -1,4 +1,4 @@
-# TypeGuard
+# DecoratorUtilities
 
 ## Menu
 
@@ -11,14 +11,14 @@
     - [Mocking functions](#mocking-functions)
 
 ## Intro
-TypeGuard is a library to user type guard utilities 
+DecoratorUtilities is a library to user type guard utilities 
 to check parameters and return type, allow function overloading 
 and function mocking at runtime
 
 ## Installation
 
 ```bash
-pip install typeguard
+pip install decoratorutilities
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ pip install typeguard
 ### Check Parameters Type
 
 ```python
-from typeguard import checktype
+from decoratorutilities import checktype
 
 @checktype
 def my_functon(a: int, b: int):
@@ -44,7 +44,7 @@ my_functon(a="invalid", b="Invalid")
 ### Check Return Type
 
 ```python
-from typeguard import checktype
+from decoratorutilities import checktype
 
 @checktype
 def my_functon(a: int, b: int) -> int:
@@ -59,7 +59,7 @@ assert my_functon(5, 6) == "1"
 ### Overloading
 
 ```python
-from typeguard import overload
+from decoratorutilities import overload
 
 @overload
 def my_functon(a:int):
@@ -78,7 +78,7 @@ my_functon('1')
 ### Mocking functions
 
 ```python
-from typeguard import mocking
+from decoratorutilities import mocking
 
 # Define args tuple, kwargs dict and return value
 @mocking([
