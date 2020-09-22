@@ -1,6 +1,6 @@
 import pytest
 
-from typeguard import mocking
+from decoratorutilities import mocking
 
 
 def test_mocking():

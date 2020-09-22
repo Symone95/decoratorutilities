@@ -1,5 +1,5 @@
 import pytest
-from typeguard import checktype
+from decoratorutilities import checktype
 
 
 def test_no_annotation():
