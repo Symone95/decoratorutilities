@@ -11,7 +11,7 @@
     - [Mocking functions](#mocking-functions)
 
 ## Intro
-DecoratorUtilities is a library to user type guard utilities 
+DecoratorUtilities is a python library to user type guard utilities 
 to check parameters and return type, allow function overloading 
 and function mocking at runtime
 
