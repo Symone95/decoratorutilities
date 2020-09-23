@@ -7,7 +7,6 @@ Welcome to decoratorutilities's documentation!
 ==============================================
 
 .. toctree::
-   :maxdepth: 3
    :caption: Installation:
    templates/test
 
