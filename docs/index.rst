@@ -8,8 +8,8 @@ Welcome to decoratorutilities's documentation!
 
 .. toctree::
    :maxdepth: 3
-   :caption: Contents:
-
+   :caption: Installation:
+   templates/test
 
 Indices and tables
 ==================
@@ -17,4 +17,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-* :ref:`templates/prova`
