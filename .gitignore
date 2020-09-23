@@ -69,8 +69,7 @@ instance/
 .scrapy
 
 # Sphinx documentation
-docs/_build/
-docs/
+docs_build/
 
 # PyBuilder
 .pybuilder/
@@ -144,3 +143,7 @@ cython_debug/
 *.xml
 
 .DS_Store
+
+
+Pipfile
+Pipfile.lock
