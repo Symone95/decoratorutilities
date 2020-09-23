@@ -33,7 +33,7 @@ release = '1.0.0'
 extensions = [
 ]
 
-# Add any paths that contain templates here, relative to this directory.
+# Add any paths that contain _templates here, relative to this directory.
 templates_path = ['_templates']
 
 # List of patterns, relative to source directory, that match files and

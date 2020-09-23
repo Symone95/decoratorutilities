@@ -7,8 +7,9 @@ Welcome to decoratorutilities's documentation!
 ==============================================
 
 .. toctree::
-   :caption: Installation:
-   templates/test
+   :caption: Installation
+
+   examples/test
 
 Indices and tables
 ==================
