@@ -34,13 +34,13 @@ from decoratorutilities import checktype
 def my_functon(a: int, b: int):
     return 1
 
-# Correct invoke
-my_functon(5, 6)
+# Valid usage
+my_functon(5, 6)  # return 1
 
-# Throws TypeError Exception
-my_functon("5", "6")
-my_functon("invalid", b="Invalid")
-my_functon(a="invalid", b="Invalid")
+# Invalid usage
+my_functon("5", "6")  # Raises TypeError Exception
+my_functon("invalid", b="Invalid")  # Raises TypeError Exception
+my_functon(a="invalid", b="Invalid")  # Raises TypeError Exception
 ```
 
 ##### Decorate your own function with **@checktype** decorator to check return type too
@@ -50,12 +50,13 @@ from decoratorutilities import checktype
 
 @checktype
 def my_functon(a: int, b: int) -> int:
-    return 1
+   return 1
 
-# Correct invoke
-assert my_functon(5, 6) == 1
-# Throws TypeError Exception
-assert my_functon(5, 6) == "1"
+# Valid usage
+assert my_functon(5, 6) == 1  # return 1
+
+# Invalid usage
+assert my_functon(5, 6) == "1"  # Raises TypeError Exception
 ```
 
 ### Overloading Decorator
@@ -88,19 +89,36 @@ from decoratorutilities import mocking
 
 # Define args tuple, kwargs dict and return value
 @mocking([
-    ((1, 2, 3), {"a": 1}, 1),
-    ((4, 5, 6), {"b": 2}, 2)
+   ((1, 2, 3), {"a": 1}, 1),
+   ((4, 5, 6), {"b": 2}, 2)
 ])
 def a():
-    pass
+   pass
 
-# Correct invocations
-assert a(1, 2, 3, a=1) == 1
-assert a(4, 5, 6, b=2) == 2
+# Valid usage
+assert a(1, 2, 3, a=1) == 1  # return 1
+assert a(4, 5, 6, b=2) == 2  # return 2
 
-# Throws KeyError Exception
-assert a(7, 8, 9, c=1) == 1
+# Invalid usage
+assert a(7, 8, 9, c=1) == 1  # Raises KeyError Exception
 ```
+
+### Cached Decorator
+
+##### Decorate your own function with **@cached** decorator to save return in cache and use it for next time
+
+```python
+from decoratorutilities import cached
+
+@cached
+def fun2(p2: str, p3: str):
+   return p2
+
+# Valid usage
+fun2("ciao2", "ciao3")  # Return p2 and save it in cache
+fun2("ciao2", "ciao3")  # Get return from cache
+```   
+
 
 ### Readthedocs Reference
 

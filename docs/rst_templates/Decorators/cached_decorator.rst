@@ -1,26 +1,20 @@
-*********************
-Overloading Decorator
-*********************
+****************
+Cached Decorator
+****************
 
-Decorate your own function with **@overload** decorator to define multiple functions with same name
-but with different parameters
+Decorate your own function with **@cached** decorator
+to save return in cache and use it for next time
 
 .. code-block:: python
    :linenos:
 
-    from decoratorutilities import overload
+   from decoratorutilities import cached
 
-   @overload
-   def my_functon(a:int):
-       return 1
 
-   @overload
-   def my_functon(a:str):
-       return 2
+   @cached
+   def fun2(p2: str, p3: str):
+      return p2
 
    # Valid usage
-   my_functon(1)  # Invoke first my_functon and return 1
-   my_functon('1')  # Invoke second my_functon and return 2
-
-   # Invalid usage
-   my_functon([1, 2, 3, 4, 5])  # Raises ValueError Exception
+   fun2("ciao2", "ciao3")  # Return p2 and save it in cache
+   fun2("ciao2", "ciao3")  # Get return from cache

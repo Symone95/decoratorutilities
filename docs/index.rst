@@ -23,6 +23,7 @@ and function mocking at runtime
    rst_templates/Decorators/check_type_decorator
    rst_templates/Decorators/overloading_decorator
    rst_templates/Decorators/mocking_decorator
+   rst_templates/Decorators/cached_decorator
 
 ..
    Indices and tables
