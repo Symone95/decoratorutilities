@@ -104,4 +104,4 @@ assert a(7, 8, 9, c=1) == 1
 
 ### Readthedocs Reference
 
-Please read our documentation here: [Readthedocs Reference](#https://decoratorutilities.readthedocs.io/en/dev/)
+Please read our documentation here: [Readthedocs Reference](https://decoratorutilities.readthedocs.io/en/dev/)
