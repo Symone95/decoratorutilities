@@ -12,6 +12,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Symone95/decoratorutilities",
+    download_url="https://pypi.org/project/decoratorutilities/#files",
     packages=["decoratorutilities"],
     classifiers=[
         "Programming Language :: Python :: 3",
