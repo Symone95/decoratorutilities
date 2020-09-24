@@ -60,8 +60,7 @@ assert my_functon(5, 6) == "1"
 
 ### Overloading Decorator
 
-##### Decorate your own function with **@overload** decorator to define multiple functions with same name
-##### but with different parameters
+##### Decorate your own function with **@overload** decorator to define multiple functions with same name but with different parameters
 
 ```python
 from decoratorutilities import overload
@@ -82,8 +81,7 @@ my_functon('1')
 
 ### Mocking Decorator
 
-##### Decorate your own function with **@mocking** decorator to mock that function adding
-##### args in a tuple, kwargs in a dict and return value
+##### Decorate your own function with **@mocking** decorator to mock that function adding args in a tuple, kwargs in a dict and return value
 
 ```python
 from decoratorutilities import mocking
