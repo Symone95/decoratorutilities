@@ -8,6 +8,7 @@
     - [Check Type Decorator](#check_type_decorator)
     - [Overloading Decorator](#overloading_decorator)
     - [Mocking Decorator](#mocking-decorator)
+    - [Cached Decorator](#cached-decorator)
 - [Readthedocs Reference](#readthedocs-reference)
 
 ## Intro
