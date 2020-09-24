@@ -1,6 +1,8 @@
 # Installing "setuptools" and "wheel" libraries
 python3 -m pip install --user --upgrade setuptools wheel
 
+rm -rf dist/
+
 # Creating dist archives
 python3 setup.py sdist bdist_wheel
 

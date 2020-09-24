@@ -4,11 +4,11 @@
 
 - [Intro](#intro)
 - [Installation](#installation)
-- [Usage](#usage)
-    - [Check Parameters Type](#check-parameters-type)
-    - [Check Return Type](#check-return-type)
-    - [Overloading](#overloading)
-    - [Mocking functions](#mocking-functions)
+- [Decorators](#decorators)
+    - [Check Type Decorator](#check_type_decorator)
+    - [Overloading Decorator](#overloading_decorator)
+    - [Mocking Decorator](#mocking-decorator)
+- [Readthedocs Reference](#readthedocs-reference)
 
 ## Intro
 DecoratorUtilities is a python library to user type guard utilities 
@@ -21,9 +21,11 @@ and function mocking at runtime
 pip install decoratorutilities
 ```
 
-## Usage
+## Decorators
 
-### Check Parameters Type
+### Check Type Decorator
+
+##### Decorate your own function with **@checktype** decorator to check parameters type
 
 ```python
 from decoratorutilities import checktype
@@ -41,7 +43,7 @@ my_functon("invalid", b="Invalid")
 my_functon(a="invalid", b="Invalid")
 ```
 
-### Check Return Type
+##### Decorate your own function with **@checktype** decorator to check return type too
 
 ```python
 from decoratorutilities import checktype
@@ -56,7 +58,10 @@ assert my_functon(5, 6) == 1
 assert my_functon(5, 6) == "1"
 ```
 
-### Overloading
+### Overloading Decorator
+
+##### Decorate your own function with **@overload** decorator to define multiple functions with same name
+##### but with different parameters
 
 ```python
 from decoratorutilities import overload
@@ -75,7 +80,10 @@ my_functon(1)
 my_functon('1')
 ```
 
-### Mocking functions
+### Mocking Decorator
+
+##### Decorate your own function with **@mocking** decorator to mock that function adding
+##### args in a tuple, kwargs in a dict and return value
 
 ```python
 from decoratorutilities import mocking
@@ -95,3 +103,7 @@ assert a(4, 5, 6, b=2) == 2
 # Throws KeyError Exception
 assert a(7, 8, 9, c=1) == 1
 ```
+
+### Readthedocs Reference
+
+Please read our documentation here: [Readthedocs Reference](#https://decoratorutilities.readthedocs.io/en/dev/)
