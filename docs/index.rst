@@ -7,13 +7,24 @@ Welcome to decoratorutilities's documentation!
 ==============================================
 
 .. toctree::
+   :numbered:
    :caption: Installation
 
-   examples/test
+   rst_templates/Installation/installation
 
-Indices and tables
-==================
+.. toctree::
+   :numbered:
+   :caption: Usage
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   rst_templates/Usage/check_parameters_type
+   rst_templates/Usage/check_return_type
+   rst_templates/Usage/overloading
+   rst_templates/Usage/mocking_functions
+
+..
+   Indices and tables
+   ==================
+   ..
+   * :ref:`genindex`
+   * :ref:`modindex`
+   * :ref:`search`

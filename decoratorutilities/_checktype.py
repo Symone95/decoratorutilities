@@ -1,5 +1,6 @@
 from functools import wraps
 
+
 def checktype(fn):
     """
     Funzione per il controllo del tipo di dato passato come parametro e del return in base alla firma del metodo
