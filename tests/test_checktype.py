@@ -90,7 +90,7 @@ def test_class_arguments():
     class X(object):
 
         @checktype
-        def x(self, value: int, anothervalue: int):
-            return value, anothervalue
+        def x(self, value: int):
+            return value
 
-    assert X().x(1, 2) == 1, 2
+    assert X().x(1) == 1
