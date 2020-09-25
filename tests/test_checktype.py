@@ -35,7 +35,6 @@ def test_base_params():
         a(a="invalid", b="Invalid")
 
 
-
 def test_pos_named_param():
 
     @checktype
@@ -73,6 +72,7 @@ def test_valid_return():
 
 glob = 0
 
+
 def test_unique_call():
 
     @checktype
@@ -83,3 +83,14 @@ def test_unique_call():
 
     assert a() == 1
     assert a() == 2
+
+
+def test_class_arguments():
+
+    class X(object):
+
+        @checktype
+        def x(self, value: int, anothervalue: int):
+            return value, anothervalue
+
+    assert X().x(1, 2) == 1, 2

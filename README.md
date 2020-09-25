@@ -106,7 +106,7 @@ assert a(7, 8, 9, c=1) == 1  # Raises KeyError Exception
 
 ### Cached Decorator
 
-##### Decorate your own function with **@cached** decorator to save return in cache and use it for next time
+##### Decorate your own function with **@cached** decorator to save return value in cache and reuse it for next time
 
 ```python
 from decoratorutilities import cached

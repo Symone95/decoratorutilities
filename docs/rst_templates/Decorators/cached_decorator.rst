@@ -3,7 +3,7 @@ Cached Decorator
 ****************
 
 Decorate your own function with **@cached** decorator
-to save return in cache and use it for next time
+to save return value in cache and reuse it for next time
 
 .. code-block:: python
    :linenos:

@@ -10,7 +10,11 @@ def checktype(fn):
 
     @wraps(fn)
     def wrapper(*args, **kwargs):
+
         if len(args) > 0:
+            if args[0].__class__.__qualname__ == ".".join(fn.__qualname__.split(".")[:-1]):
+                args = tuple(list(args)[1:])
+
             for value, (_key, _type) in zip(args, fn.__annotations__.items()):
                 if not isinstance(value, _type):
                     raise TypeError(f"Got: \'{value}\' of {type(value)} instance, expected {_type} instance for \"{_key}\" parameter")

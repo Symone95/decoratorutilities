@@ -1,7 +1,14 @@
 from functools import wraps
-from .utils import extract_signature_function, is_matching_signature, signature_already_exists
 
-cache_handlers_map = {}
+cached_value_handlers_map = {}
+
+
+def get_value_matching(cached_value_handlers_map, args_tuple):
+    args, kwargs = args_tuple
+    for value_handler in cached_value_handlers_map:
+        if args == value_handler["args"] and kwargs == value_handler["kwargs"]:
+            return value_handler
+    return None
 
 
 def cached(fn):
@@ -13,30 +20,19 @@ def cached(fn):
     """
     fn_name = f"{fn.__module__}.{fn.__qualname__}"
 
-    if fn_name not in cache_handlers_map:
-        cache_handlers_map[fn_name] = []
-
-    current_signature = extract_signature_function(fn)
-    if signature_already_exists(current_signature, cache_handlers_map[fn_name]):
-        raise NameError(f'Signature already exists for {fn.__qualname__}')
-
-    cache_handlers_map[fn_name].append((current_signature, fn))
+    if fn_name not in cached_value_handlers_map:
+        cached_value_handlers_map[fn_name] = []
 
     @wraps(fn)
     def wrapper(*args, **kwargs):
-        for (signature, handler) in cache_handlers_map[fn_name]:
-            if is_matching_signature((args, kwargs), signature, handler):
-                retr = handler(*args, **kwargs)
 
-                if retr:
-                    if "return" not in signature:
-                        signature["return"] = retr
-
-                    return signature["return"]
-                else:
-                    return retr
+        check = get_value_matching(cached_value_handlers_map[fn_name], (args, kwargs))
+        if not check:
+            tmp = fn(*args, **kwargs)
+            cached_value_handlers_map[fn_name].append({"args": args, "kwargs": kwargs, "return": tmp})
+            return tmp
         else:
-            raise ValueError(f'No matching signature for {fn.__qualname__} with arguments: {args} {kwargs}')
+            return check["return"]
 
     return wrapper
 
