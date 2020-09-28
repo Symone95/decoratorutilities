@@ -94,3 +94,6 @@ def test_class_arguments():
             return value
 
     assert X().x(1) == 1
+
+    with pytest.raises(TypeError):
+        X().x('1')
