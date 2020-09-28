@@ -158,7 +158,7 @@ def test_performance():
     cached_execution_time, cached_value = util_run_function_with_time(cached_fibonacci, (fib_value, ), {})
     uncached_execution_time, uncached_value = util_run_function_with_time(fibonacci, (fib_value, ), {})
 
-    print(f" cached_execution_time: {cached_execution_time} - uncached_execution_time: {uncached_execution_time}")
+    print(f"cached_execution_time: {cached_execution_time} - uncached_execution_time: {uncached_execution_time}")
 
     assert cached_execution_time < uncached_execution_time
     assert cached_value == uncached_value

@@ -1,5 +1,9 @@
 # DecoratorUtilities
 
+### Readthedocs Reference
+
+Please read our documentation here: [Readthedocs Reference](https://decoratorutilities.readthedocs.io/en/dev/)
+
 ## Menu
 
 - [Intro](#intro)
@@ -9,7 +13,7 @@
     - [Overloading Decorator](#overloading_decorator)
     - [Mocking Decorator](#mocking-decorator)
     - [Cached Decorator](#cached-decorator)
-- [Readthedocs Reference](#readthedocs-reference)
+    - [Timeit Decorator](#timeit-decorator)
 
 ## Intro
 DecoratorUtilities is a python library to user type guard utilities 
@@ -42,6 +46,19 @@ my_functon(5, 6)  # return 1
 my_functon("5", "6")  # Raises TypeError Exception
 my_functon("invalid", b="Invalid")  # Raises TypeError Exception
 my_functon(a="invalid", b="Invalid")  # Raises TypeError Exception
+
+# checktype decorator for classes methods
+class X(object):
+
+    @checktype
+    def x(self, value: int):
+        return value
+
+assert X().x(1) == 1
+
+with pytest.raises(TypeError):
+    X().x('1')  # Raises TypeError Exception
+
 ```
 
 ##### Decorate your own function with **@checktype** decorator to check return type too
@@ -110,17 +127,57 @@ assert a(7, 8, 9, c=1) == 1  # Raises KeyError Exception
 
 ```python
 from decoratorutilities import cached
+import datetime
+
+def util_run_function_with_time(fn, args, kwargs):
+    start_time = datetime.datetime.now()
+    tmp = fn(*args, **kwargs)
+    end_time = datetime.datetime.now()
+    return (end_time - start_time), tmp
 
 @cached
-def fun2(p2: str, p3: str):
-   return p2
+def cached_fibonacci(x):
+    if x == 0:
+        return 0
 
-# Valid usage
-fun2("ciao2", "ciao3")  # Return p2 and save it in cache
-fun2("ciao2", "ciao3")  # Get return from cache
+    if x == 1:
+        return 1
+
+    return cached_fibonacci(x - 1) + cached_fibonacci(x - 2)
+
+def fibonacci(x):
+    if x == 0:
+        return 0
+
+    if x == 1:
+        return 1
+
+    return fibonacci(x - 1) + fibonacci(x - 2)
+
+fib_value = 20
+cached_execution_time, cached_value = util_run_function_with_time(cached_fibonacci, (fib_value, ), {})  # Return execution time and value for cached function
+uncached_execution_time, uncached_value = util_run_function_with_time(fibonacci, (fib_value, ), {})  # Return execution time and value for uncached function
+
+print(f"cached_execution_time: {cached_execution_time} - uncached_execution_time: {uncached_execution_time}")
+
+assert cached_execution_time < uncached_execution_time  # OK
+assert cached_value == uncached_value  # OK
 ```   
 
+### Timeit Decorator
 
-### Readthedocs Reference
+##### Decorate your own function with **@timeit** decorator to monitoring execution time
 
-Please read our documentation here: [Readthedocs Reference](https://decoratorutilities.readthedocs.io/en/dev/)
+```python
+from decoratorutilities import timeit
+import time
+
+
+@timeit
+def hello():
+    time.sleep(0.1)
+
+
+if __name__ == "__main__":
+    hello()
+```

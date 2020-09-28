@@ -38,3 +38,17 @@ Decorate your own function with **@checktype** decorator to check return type to
 
    # Invalid usage
    assert my_functon(5, 6) == "1"  # Raises TypeError Exception
+
+.. code-block:: python
+   :linenos:
+   # checktype decorator for classes methods
+   class X(object):
+
+       @checktype
+       def x(self, value: int):
+           return value
+
+   assert X().x(1) == 1
+
+   with pytest.raises(TypeError):
+       X().x('1')  # Raises TypeError Exception
