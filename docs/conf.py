@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'decoratorutilities'
-copyright = '2020, Simone'
+copyright = '2020, Simone Scalamandrè'
 author = 'Simone95'
 
 # The full version, including alpha/beta/rc tags

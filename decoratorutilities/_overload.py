@@ -1,9 +1,17 @@
 from functools import wraps
 
 overload_handlers_map = {}
+__all__ = ['overload']
 
 
 def extract_signature_function(fn):
+    """
+    Funzione per l'estrazione della firma della funzione passata come parametro
+
+    :param fn:
+    :return:
+    """
+
     if not fn.__annotations__:
         raise TypeError(f'Missing annotation for {fn.__qualname__}')
 
@@ -11,6 +19,14 @@ def extract_signature_function(fn):
 
 
 def is_matching_signature(args_tuple, signature, handler) -> bool:
+    """
+    Funzione per il controllo del match tra gli args/kwargs e la funzione passati
+
+    :param args_tuple:
+    :param signature:
+    :param handler:
+    :return:
+    """
     args, kwargs = args_tuple
 
     if len(args) + len(kwargs) != len(handler.__code__.co_varnames):
@@ -33,6 +49,13 @@ def is_matching_signature(args_tuple, signature, handler) -> bool:
 
 
 def signature_already_exists(searching_signature, handlers_map):
+    """
+    Funzione per il controllo dell'esistenza della firma della funzione passata con quelle salvate nella mappa "handlers_map"
+
+    :param searching_signature:
+    :param handlers_map:
+    :return:
+    """
     for (signature, handler) in handlers_map:
         if searching_signature == signature:
             return True
@@ -67,6 +90,3 @@ def overload(fn):
             raise ValueError(f'No matching signature for {fn.__qualname__} with arguments: {args} {kwargs}')
 
     return wrapper
-
-
-__all__ = ['overload']

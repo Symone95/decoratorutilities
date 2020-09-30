@@ -95,6 +95,7 @@ def test_calling_missing_signature_method():
 
     with pytest.raises(ValueError):
         assert a([1]) is None
+        assert a([1, 2, 3, 4, 5]) == 5
 
 
 def test_defining_same_signature_function():

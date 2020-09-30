@@ -1,14 +1,19 @@
 # DecoratorUtilities
 
+### Readthedocs Reference
+
+Please read our documentation here: [Readthedocs Reference](https://decoratorutilities.readthedocs.io/en/dev/)
+
 ## Menu
 
 - [Intro](#intro)
 - [Installation](#installation)
-- [Usage](#usage)
-    - [Check Parameters Type](#check-parameters-type)
-    - [Check Return Type](#check-return-type)
-    - [Overloading](#overloading)
-    - [Mocking functions](#mocking-functions)
+- [Decorators](#decorators)
+    - [Check Type Decorator](#check_type_decorator)
+    - [Overloading Decorator](#overloading_decorator)
+    - [Mocking Decorator](#mocking-decorator)
+    - [Cached Decorator](#cached-decorator)
+    - [Timeit Decorator](#timeit-decorator)
 
 ## Intro
 DecoratorUtilities is a python library to user type guard utilities 
@@ -21,42 +26,84 @@ and function mocking at runtime
 pip install decoratorutilities
 ```
 
-## Usage
+## Decorators
 
-### Check Parameters Type
+### Check Type Decorator
+
+Decorate your own function with **@checktype** decorator to check parameters type  
+**Example:**
 
 ```python
+import pytest
 from decoratorutilities import checktype
 
 @checktype
 def my_functon(a: int, b: int):
     return 1
 
-# Correct invoke
-my_functon(5, 6)
+# Valid usage
+my_functon(5, 6)  # return 1
 
-# Throws TypeError Exception
-my_functon("5", "6")
-my_functon("invalid", b="Invalid")
-my_functon(a="invalid", b="Invalid")
+# Invalid usage
+my_functon("5", "6")  # Raises TypeError Exception
+my_functon("invalid", b="Invalid")  # Raises TypeError Exception
+my_functon(a="invalid", b="Invalid")  # Raises TypeError Exception
+
+# checktype decorator for classes methods
+class X(object):
+
+    @checktype
+    def x(self, value: int):
+        return value
+
+assert X().x(1) == 1
+
+with pytest.raises(TypeError):
+    X().x('1')  # Raises TypeError Exception
 ```
 
-### Check Return Type
+Decorate your own function with **@checktype** decorator to check return type too  
+**Example:**
 
 ```python
 from decoratorutilities import checktype
 
 @checktype
 def my_functon(a: int, b: int) -> int:
-    return 1
+   return 1
 
-# Correct invoke
-assert my_functon(5, 6) == 1
-# Throws TypeError Exception
-assert my_functon(5, 6) == "1"
+# Valid usage
+assert my_functon(5, 6) == 1  # return 1
+
+# Invalid usage
+assert my_functon(5, 6) == "1"  # Raises TypeError Exception
 ```
 
-### Overloading
+Decorate your own class methods with **@checktype** decorator to check parameters and return type  
+**Example:**
+
+```python
+import pytest
+from decoratorutilities import checktype
+
+class X(object):
+
+    @checktype
+    def x(self, value: int):
+        return value
+
+# Valid usage
+assert X().x(1) == 1  # True  
+
+# Invalid usage
+with pytest.raises(TypeError):
+    X().x('1')  # Raises TypeError Exception
+```
+
+### Overloading Decorator
+
+Decorate your own function with **@overload** decorator to define multiple functions with same name but with different parameters  
+**Example:**
 
 ```python
 from decoratorutilities import overload
@@ -75,23 +122,126 @@ my_functon(1)
 my_functon('1')
 ```
 
-### Mocking functions
+### Mocking Decorator
+
+Decorate your own function with **@mocking** decorator to mock that function adding args in a tuple, kwargs in a dict and return value  
+**Example:**
 
 ```python
 from decoratorutilities import mocking
 
 # Define args tuple, kwargs dict and return value
 @mocking([
-    ((1, 2, 3), {"a": 1}, 1),
-    ((4, 5, 6), {"b": 2}, 2)
+   ((1, 2, 3), {"a": 1}, 1),
+   ((4, 5, 6), {"b": 2}, 2)
 ])
 def a():
-    pass
+   pass
 
-# Correct invocations
-assert a(1, 2, 3, a=1) == 1
-assert a(4, 5, 6, b=2) == 2
+# Valid usage
+assert a(1, 2, 3, a=1) == 1  # return 1
+assert a(4, 5, 6, b=2) == 2  # return 2
 
-# Throws KeyError Exception
-assert a(7, 8, 9, c=1) == 1
+# Invalid usage
+assert a(7, 8, 9, c=1) == 1  # Raises KeyError Exception
+```
+
+### Cached Decorator
+
+Decorate your own function with **@cached** decorator to save return value in cache and reuse it for next time  
+**Example:**
+
+```python
+from decoratorutilities import cached
+import datetime
+
+def util_run_function_with_time(fn, args, kwargs):
+    start_time = datetime.datetime.now()
+    tmp = fn(*args, **kwargs)
+    end_time = datetime.datetime.now()
+    return (end_time - start_time), tmp
+
+@cached
+def cached_fibonacci(x):
+    if x == 0:
+        return 0
+
+    if x == 1:
+        return 1
+
+    return cached_fibonacci(x - 1) + cached_fibonacci(x - 2)
+
+def fibonacci(x):
+    if x == 0:
+        return 0
+
+    if x == 1:
+        return 1
+
+    return fibonacci(x - 1) + fibonacci(x - 2)
+
+fib_value = 20
+cached_execution_time, cached_value = util_run_function_with_time(cached_fibonacci, (fib_value, ), {})  # Return execution time and value for cached function
+uncached_execution_time, uncached_value = util_run_function_with_time(fibonacci, (fib_value, ), {})  # Return execution time and value for uncached function
+
+print(f"cached_execution_time: {cached_execution_time} - uncached_execution_time: {uncached_execution_time}")
+
+assert cached_execution_time < uncached_execution_time  # OK
+assert cached_value == uncached_value  # OK
+```   
+
+### Timeit Decorator
+
+Decorate your own function with **@timeit** decorator to monitoring execution time  
+**Example:**
+
+```python
+from decoratorutilities import timeit
+import time
+
+
+@timeit
+def hello():
+    time.sleep(0.1)
+
+
+if __name__ == "__main__":
+    hello()  # print "Execution time: 100.75 ms"
+```
+
+
+### Debug Decorator
+
+Decorate your own function with **@debug** decorator to print in console more Exception details  
+**Example:**
+
+```python
+from decoratorutilities import debug
+import pytest
+
+@debug
+def a():
+    message = "Hello " + 5
+    return message
+
+with pytest.raises(TypeError):
+    a() # Print in console: Found "<class 'TypeError'>" Exception in file "('../tests', 'test_debug.py')" on line "9"
+        # Error message: "can only concatenate str (not "int") to str"
+```
+
+Decorate your own class methods with **@debug** decorator to print in console more Exception details  
+**Example:**
+
+```python
+from decoratorutilities import debug
+import pytest
+
+class A(object):
+
+    @debug
+    def __init__(self):
+        self.message = "Hello " + 5
+
+with pytest.raises(TypeError):
+    A()
 ```
