@@ -4,13 +4,29 @@ from decoratorutilities import singleton
 
 def test_singleton_class():
 
+    #@singleton(klass="C")
     @singleton
     class A(object):
-        def __init__(self):
+        def __init__(self, c, prova: str):
             self.x = 10
+            self.prova = prova
 
-    assert A.x == 10
+    #@singleton("Prov", "SImone", nome="SIMO")
+    #def test():
+    #    pass
 
+    """
+    @singleton
+    class B(object):
+        def __init__(self):
+            self.x = 50
+    """
+
+    #print(A)
+    #assert A.x == 10
+
+
+"""
 
 def test_singleton_class_constructor():
 
@@ -42,3 +58,5 @@ def test_singleton_instantiation_fails():
 
     with pytest.raises(TypeError):
         B()
+
+"""
