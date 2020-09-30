@@ -1,6 +1,8 @@
 import datetime
 from functools import wraps
 
+__all__ = ['timeit']
+
 
 def timeit(fn):
 

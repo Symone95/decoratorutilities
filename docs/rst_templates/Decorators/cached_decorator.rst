@@ -2,8 +2,8 @@
 Cached Decorator
 ****************
 
-Decorate your own function with **@cached** decorator
-to save return value in cache and reuse it for next time
+| Decorate your own function with **@cached** decorator to save return value in cache and reuse it for next time
+| **Example:**
 
 .. code-block:: python
    :linenos:
@@ -42,5 +42,5 @@ to save return value in cache and reuse it for next time
 
    print(f"cached_execution_time: {cached_execution_time} - uncached_execution_time: {uncached_execution_time}")
 
-   assert cached_execution_time < uncached_execution_time  # OK
-   assert cached_value == uncached_value  # OK
+   assert cached_execution_time < uncached_execution_time  # True
+   assert cached_value == uncached_value  # True

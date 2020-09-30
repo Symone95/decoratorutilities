@@ -2,7 +2,8 @@
 Check Type Decorator
 ********************
 
-Decorate your own function with **@checktype** decorator to check parameters type
+| Decorate your own function with **@checktype** decorator to check parameters type
+| **Example:**
 
 .. code-block:: python
    :linenos:
@@ -22,12 +23,13 @@ Decorate your own function with **@checktype** decorator to check parameters typ
     my_functon(a="invalid", b="Invalid")  # Raises TypeError Exception
 
 
-Decorate your own function with **@checktype** decorator to check return type too
+| Decorate your own function with **@checktype** decorator to check return type too
+| **Example:**
 
 .. code-block:: python
    :linenos:
 
-    from decoratorutilities import checktype
+   from decoratorutilities import checktype
 
    @checktype
    def my_functon(a: int, b: int) -> int:
@@ -39,9 +41,13 @@ Decorate your own function with **@checktype** decorator to check return type to
    # Invalid usage
    assert my_functon(5, 6) == "1"  # Raises TypeError Exception
 
+
+| Decorate your own class methods with **@checktype** decorator to check parameters and return type
+| **Example:**
+
 .. code-block:: python
    :linenos:
-   # checktype decorator for classes methods
+
    class X(object):
 
        @checktype

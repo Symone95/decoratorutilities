@@ -2,8 +2,8 @@
 Overloading Decorator
 *********************
 
-Decorate your own function with **@overload** decorator to define multiple functions with same name
-but with different parameters
+| Decorate your own function with **@overload** decorator to define multiple functions with same name but with different parameters
+| **Example:**
 
 .. code-block:: python
    :linenos:

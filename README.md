@@ -30,9 +30,11 @@ pip install decoratorutilities
 
 ### Check Type Decorator
 
-##### Decorate your own function with **@checktype** decorator to check parameters type
+Decorate your own function with **@checktype** decorator to check parameters type  
+**Example:**
 
 ```python
+import pytest
 from decoratorutilities import checktype
 
 @checktype
@@ -58,10 +60,10 @@ assert X().x(1) == 1
 
 with pytest.raises(TypeError):
     X().x('1')  # Raises TypeError Exception
-
 ```
 
-##### Decorate your own function with **@checktype** decorator to check return type too
+Decorate your own function with **@checktype** decorator to check return type too  
+**Example:**
 
 ```python
 from decoratorutilities import checktype
@@ -77,9 +79,31 @@ assert my_functon(5, 6) == 1  # return 1
 assert my_functon(5, 6) == "1"  # Raises TypeError Exception
 ```
 
+Decorate your own class methods with **@checktype** decorator to check parameters and return type  
+**Example:**
+
+```python
+import pytest
+from decoratorutilities import checktype
+
+class X(object):
+
+    @checktype
+    def x(self, value: int):
+        return value
+
+# Valid usage
+assert X().x(1) == 1  # True  
+
+# Invalid usage
+with pytest.raises(TypeError):
+    X().x('1')  # Raises TypeError Exception
+```
+
 ### Overloading Decorator
 
-##### Decorate your own function with **@overload** decorator to define multiple functions with same name but with different parameters
+Decorate your own function with **@overload** decorator to define multiple functions with same name but with different parameters  
+**Example:**
 
 ```python
 from decoratorutilities import overload
@@ -100,7 +124,8 @@ my_functon('1')
 
 ### Mocking Decorator
 
-##### Decorate your own function with **@mocking** decorator to mock that function adding args in a tuple, kwargs in a dict and return value
+Decorate your own function with **@mocking** decorator to mock that function adding args in a tuple, kwargs in a dict and return value  
+**Example:**
 
 ```python
 from decoratorutilities import mocking
@@ -123,7 +148,8 @@ assert a(7, 8, 9, c=1) == 1  # Raises KeyError Exception
 
 ### Cached Decorator
 
-##### Decorate your own function with **@cached** decorator to save return value in cache and reuse it for next time
+Decorate your own function with **@cached** decorator to save return value in cache and reuse it for next time  
+**Example:**
 
 ```python
 from decoratorutilities import cached
@@ -166,7 +192,8 @@ assert cached_value == uncached_value  # OK
 
 ### Timeit Decorator
 
-##### Decorate your own function with **@timeit** decorator to monitoring execution time
+Decorate your own function with **@timeit** decorator to monitoring execution time  
+**Example:**
 
 ```python
 from decoratorutilities import timeit
@@ -179,5 +206,42 @@ def hello():
 
 
 if __name__ == "__main__":
-    hello()
+    hello()  # print "Execution time: 100.75 ms"
+```
+
+
+### Debug Decorator
+
+Decorate your own function with **@debug** decorator to print in console more Exception details  
+**Example:**
+
+```python
+from decoratorutilities import debug
+import pytest
+
+@debug
+def a():
+    message = "Hello " + 5
+    return message
+
+with pytest.raises(TypeError):
+    a() # Print in console: Found "<class 'TypeError'>" Exception in file "('../tests', 'test_debug.py')" on line "9"
+        # Error message: "can only concatenate str (not "int") to str"
+```
+
+Decorate your own class methods with **@debug** decorator to print in console more Exception details  
+**Example:**
+
+```python
+from decoratorutilities import debug
+import pytest
+
+class A(object):
+
+    @debug
+    def __init__(self):
+        self.message = "Hello " + 5
+
+with pytest.raises(TypeError):
+    A()
 ```

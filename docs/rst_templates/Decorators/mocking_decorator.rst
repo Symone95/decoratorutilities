@@ -2,8 +2,8 @@
 Mocking Decorator
 *****************
 
-Decorate your own function with **@mocking** decorator to mock that function adding
-args in a tuple, kwargs in a dict and return value
+| Decorate your own function with **@mocking** decorator to mock that function adding args in a tuple, kwargs in a dict and return value
+| **Example:**
 
 .. code-block:: python
    :linenos:

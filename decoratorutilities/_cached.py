@@ -1,6 +1,7 @@
 from functools import wraps
 
 cached_value_handlers_map = {}
+__all__ = ['cached']
 
 
 def get_value_matching(cached_value_handlers_map, args_tuple):
@@ -35,6 +36,3 @@ def cached(fn):
             return check["return"]
 
     return wrapper
-
-
-__all__ = ['cached']

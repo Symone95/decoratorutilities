@@ -2,7 +2,8 @@
 Timeit Decorator
 *********************
 
-Decorate your own function with **@timeit** decorator to monitoring execution time
+| Decorate your own function with **@timeit** decorator to monitoring execution time
+| **Example:**
 
 .. code-block:: python
    :linenos:
@@ -17,4 +18,4 @@ Decorate your own function with **@timeit** decorator to monitoring execution ti
 
 
    if __name__ == "__main__":
-       hello()
+       hello()  # print "Execution time: 100.75 ms"

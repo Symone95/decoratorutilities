@@ -1,5 +1,7 @@
 from functools import wraps
 
+__all__ = ['checktype']
+
 
 def checktype(fn):
     """

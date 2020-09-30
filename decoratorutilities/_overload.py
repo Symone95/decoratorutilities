@@ -1,6 +1,7 @@
 from functools import wraps
 
 overload_handlers_map = {}
+__all__ = ['overload']
 
 
 def extract_signature_function(fn):
@@ -89,6 +90,3 @@ def overload(fn):
             raise ValueError(f'No matching signature for {fn.__qualname__} with arguments: {args} {kwargs}')
 
     return wrapper
-
-
-__all__ = ['overload']
