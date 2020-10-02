@@ -53,3 +53,60 @@ def test_singleton_instantiation_fails():
 
     with pytest.raises(TypeError):
         B()
+
+
+def test_singleton_array_access():
+
+    @singleton()
+    class A:
+        def __getitem__(self, item):
+            return item
+
+    assert A['ciao'] == 'ciao'
+
+
+def test_decorating_function_must_fails():
+
+    with pytest.raises(TypeError):
+        @singleton()
+        def A():
+            pass
+
+
+def test_accessing_property_str():
+
+    @singleton()
+    class A:
+
+        def __str__(self):
+            return 'A'
+
+    assert str(A) == 'A'
+
+
+def test_accessing_property_repr():
+
+    @singleton()
+    class A:
+        def __repr__(self):
+            return 'A()'
+
+    assert repr(A) == 'A()'
+
+
+def test_args_and_kwargs():
+
+    @singleton(0, 1, 2, a='a', b='b')
+    class A:
+        def __init__(self, para_0, param_1, param_2, a,  b):
+            self.para_0 = para_0
+            self.param_1 = param_1
+            self.param_2 = param_2
+            self.a = a
+            self.b = b
+
+    assert A.para_0 == 0
+    assert A.param_1 == 1
+    assert A.param_2 == 2
+    assert A.a == 'a'
+    assert A.b == 'b'
