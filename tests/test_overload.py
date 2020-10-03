@@ -109,3 +109,15 @@ def test_defining_same_signature_function():
         def a(a: int):
             return 0
 
+def test_overload_with_class_methods():
+
+    class X:
+        @overload
+        def x(self, x: int):
+            return int
+
+        def x(self, x: str):
+            return str
+
+    assert X().x(1) == int
+    assert X().x('1') == str
