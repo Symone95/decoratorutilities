@@ -26,6 +26,7 @@ and function mocking at runtime
    rst_templates/Decorators/cached_decorator
    rst_templates/Decorators/timeit_decorator
    rst_templates/Decorators/debug_decorator
+   rst_templates/Decorators/singleton_decorator
 
 ..
    Indices and tables
