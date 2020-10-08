@@ -110,3 +110,17 @@ def test_args_and_kwargs():
     assert A.param_2 == 2
     assert A.a == 'a'
     assert A.b == 'b'
+
+
+def test_args_and_kwargs_simone():
+
+    @singleton(0, 1, 2, a='a', b='b')
+    class A:
+        pass
+
+    assert A["0"] == 0
+    assert A["1"] == 1
+    assert A["2"] == 2
+    assert A.a == 'a'
+    assert A.b == 'b'
+

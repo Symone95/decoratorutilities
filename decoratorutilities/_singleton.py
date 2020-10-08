@@ -7,6 +7,10 @@ class Singleton(object):
     def __init__(self, klass, *args, **kwargs):
         self.name = klass.__name__
         self.instance = klass()
+        if len(args) > 0:
+            for index, arg in enumerate(args):
+                setattr(self.instance, str(index), arg)
+
         if len(kwargs) > 0:
             for kwarg in kwargs:
                 setattr(self.instance, kwarg, kwargs[kwarg])
@@ -16,6 +20,25 @@ class Singleton(object):
 
     def __getattr__(self, item):
         return getattr(self.instance, item)
+
+    def __setitem__(self, key, value):
+        setattr(self.instance, key, value)
+
+    def __getitem__(self, item):
+        return getattr(self.instance, item)
+
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return repr(self.instance)
+
+    def __enter__(self):
+        self.fp = open(self.filename, "a+")
+        return self.instance
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.fp.close()
 
 
 def singleton(*args, **kwargs):
