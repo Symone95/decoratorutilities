@@ -33,9 +33,17 @@ def is_matching_signature(args_tuple, signature, handler) -> bool:
         return False
 
     if len(args):
+        mod = handler.__qualname__.replace(f".{handler.__name__}", "")
         for value, (_key, _type) in zip(args, signature.items()):
-            if not isinstance(value, _type):
-                return False
+            is_method = mod in value.__class__.__qualname__
+            if not is_method:
+                # Here is a function
+                if not isinstance(value, _type):
+                    return False
+            else:
+                # Here is a class method
+                if not isinstance(args[1], _type):
+                    return False
 
     if len(kwargs):
         for arg_name in kwargs:
@@ -65,7 +73,13 @@ def signature_already_exists(searching_signature, handlers_map):
 
 def overload(fn):
     """
-    Funzione per poter eseguire l'overload di una funzione
+    MODULE NAME
+        overload
+
+    MODULE REFERENCE
+        https://decoratorutilities.readthedocs.io/en/latest/rst_templates/Decorators/overloading_decorator.html
+
+    Decorate your own function with **@overload** decorator to define multiple functions with same name but with different parameters
 
     :param fn:
     :return:

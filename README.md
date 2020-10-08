@@ -123,6 +123,26 @@ my_functon(1)
 my_functon('1')
 ```
 
+Decorate your own class method with **@overload** decorator to define multiple class methods with same name but with different parameters  
+**Example:**
+
+```python
+from decoratorutilities import overload
+
+class X(object):
+    @overload
+    def x(self, x: int):
+        return int
+
+    @overload
+    def x(self, x: str):
+        return str
+
+assert X().x(1) == int  # True
+assert X().x('1') == str  # True
+```
+
+
 ### Mocking Decorator
 
 Decorate your own function with **@mocking** decorator to mock that function adding args in a tuple, kwargs in a dict and return value  

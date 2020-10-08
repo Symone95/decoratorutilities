@@ -14,7 +14,13 @@ def get_value_matching(cached_value_handlers_map, args_tuple):
 
 def cached(fn):
     """
-    Funzione per poter cachare il ritorno di una funzione
+    MODULE NAME
+        timeit
+
+    MODULE REFERENCE
+        https://decoratorutilities.readthedocs.io/en/latest/rst_templates/Decorators/cached_decorator.html
+
+    Decorate your own function with **@cached** decorator to save return value in cache and reuse it for next time
 
     :param fn:
     :return:

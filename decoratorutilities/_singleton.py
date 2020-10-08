@@ -19,6 +19,21 @@ class Singleton(object):
 
 
 def singleton(*args, **kwargs):
+    """
+    MODULE NAME
+        singleton
+
+    MODULE REFERENCE
+        https://decoratorutilities.readthedocs.io/en/latest/rst_templates/Decorators/singleton_decorator.html
+
+    Decorate your own classes with **@singleton()** decorator to ensure that only one instance of the singleton class ever exists.
+    Never invoke **@singleton()** decorator without brackets otherwise it will cause problems
+    Define your class method `__init__()` without parameter, pass them to the **@singleton()** decorator in the format "key" = "value" like kwargs.
+
+    :param args:
+    :param kwargs:
+    :return:
+    """
 
     def class_wrapper(klass):
 

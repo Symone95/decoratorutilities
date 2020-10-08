@@ -27,6 +27,19 @@ def is_mock_matching(args_tuple, mocking_value_handler):
 
 @checktype
 def mocking(mocks: list):
+    """
+    MODULE NAME
+        mocking
+
+    MODULE REFERENCE
+        https://decoratorutilities.readthedocs.io/en/latest/rst_templates/Decorators/mocking_decorator.html
+
+    Decorate your own function with **@mocking** decorator to mock that function adding args in a tuple, kwargs in a dict and return value
+
+    :param mocks:
+    :return:
+    """
+
     for mock in mocks:
         save_mock(*mock)
 

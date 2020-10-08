@@ -5,6 +5,18 @@ __all__ = ['timeit']
 
 
 def timeit(fn):
+    """
+    MODULE NAME
+        timeit
+
+    MODULE REFERENCE
+        https://decoratorutilities.readthedocs.io/en/latest/rst_templates/Decorators/timeit_decorator.html
+
+    Decorate your own function with **@timeit** decorator to monitoring execution time
+
+    :param fn:
+    :return:
+    """
 
     @wraps(fn)
     def wrapper(*args, **kwargs):
