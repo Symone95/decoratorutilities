@@ -5,9 +5,9 @@ name: Python package
 
 on:
   push:
-    branches: [ master ]
+    branches: [ fix_overload_decorator_for_class ]
   pull_request:
-    branches: [ master ]
+    branches: [ fix_overload_decorator_for_class ]
 
 jobs:
   build:
