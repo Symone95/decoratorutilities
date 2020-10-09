@@ -1,6 +1,7 @@
 from decoratorutilities import debug
 import pytest
 
+
 def test_add_function():
 
     @debug

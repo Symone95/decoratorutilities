@@ -123,4 +123,3 @@ def test_overload_with_class_methods():
 
     assert X().x(1) == int
     assert X().x('1') == str
-

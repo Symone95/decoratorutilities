@@ -5,8 +5,15 @@ __all__ = ['checktype']
 
 def checktype(fn):
     """
-    Funzione per il controllo del tipo di dato passato come parametro e del return in base alla firma del metodo
-    :param fn:
+    MODULE NAME
+        checktype
+
+    MODULE REFERENCE
+        https://decoratorutilities.readthedocs.io/en/latest/rst_templates/Decorators/check_type_decorator.html
+
+    Decorate your own function or class method with **@checktype** decorator to check parameters type
+
+    :param fn: Decorated function or class method to check parameters for
     :return:
     """
 
