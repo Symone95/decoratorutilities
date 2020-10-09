@@ -124,3 +124,12 @@ def test_args_and_kwargs_simone():
     assert A.a == 'a'
     assert A.b == 'b'
 
+
+def test_init_singleton():
+
+    @singleton(value=1)
+    class A:
+        def __init__(self):
+            self.real_value = 1 + self.value
+
+    assert A.real_value == 2
