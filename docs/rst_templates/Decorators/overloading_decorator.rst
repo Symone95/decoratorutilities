@@ -24,3 +24,24 @@ Overloading Decorator
 
    # Invalid usage
    my_functon([1, 2, 3, 4, 5])  # Raises ValueError Exception
+
+
+| Decorate your own class method with **@overload** decorator to define multiple class methods with same name but with different parameters
+| **Example:**
+
+.. code-block:: python
+   :linenos:
+
+   from decoratorutilities import overload
+
+   class X(object):
+       @overload
+       def x(self, x: int):
+           return int
+
+       @overload
+       def x(self, x: str):
+           return str
+
+   assert X().x(1) == int  # True
+   assert X().x('1') == str  # True

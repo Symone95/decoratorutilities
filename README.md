@@ -12,7 +12,7 @@ Please read our documentation here: [Readthedocs Reference](https://decoratoruti
     - [Check Type Decorator](#check_type_decorator)
     - [Overloading Decorator](#overloading_decorator)
     - [Mocking Decorator](#mocking-decorator)
-    - [Cached Decorator](#cached-decorator)
+    - [Memoized Decorator](#memoized-decorator)
     - [Timeit Decorator](#timeit-decorator)
     - [Singleton Decorator](#singleton-decorator)
 
@@ -123,6 +123,26 @@ my_functon(1)
 my_functon('1')
 ```
 
+Decorate your own class method with **@overload** decorator to define multiple class methods with same name but with different parameters  
+**Example:**
+
+```python
+from decoratorutilities import overload
+
+class X(object):
+    @overload
+    def x(self, x: int):
+        return int
+
+    @overload
+    def x(self, x: str):
+        return str
+
+assert X().x(1) == int  # True
+assert X().x('1') == str  # True
+```
+
+
 ### Mocking Decorator
 
 Decorate your own function with **@mocking** decorator to mock that function adding args in a tuple, kwargs in a dict and return value  
@@ -147,13 +167,13 @@ assert a(4, 5, 6, b=2) == 2  # return 2
 assert a(7, 8, 9, c=1) == 1  # Raises KeyError Exception
 ```
 
-### Cached Decorator
+### Memoized Decorator
 
-Decorate your own function with **@cached** decorator to save return value in cache and reuse it for next time  
+Decorate your own function or class method with **@memoized** decorator to speed up it by storing the results and returning the cached result when the same inputs occur again  
 **Example:**
 
 ```python
-from decoratorutilities import cached
+from decoratorutilities import memoized
 import datetime
 
 def util_run_function_with_time(fn, args, kwargs):
@@ -162,15 +182,15 @@ def util_run_function_with_time(fn, args, kwargs):
     end_time = datetime.datetime.now()
     return (end_time - start_time), tmp
 
-@cached
-def cached_fibonacci(x):
+@memoized
+def memoized_fibonacci(x):
     if x == 0:
         return 0
 
     if x == 1:
         return 1
 
-    return cached_fibonacci(x - 1) + cached_fibonacci(x - 2)
+    return memoized_fibonacci(x - 1) + memoized_fibonacci(x - 2)
 
 def fibonacci(x):
     if x == 0:
@@ -182,13 +202,13 @@ def fibonacci(x):
     return fibonacci(x - 1) + fibonacci(x - 2)
 
 fib_value = 20
-cached_execution_time, cached_value = util_run_function_with_time(cached_fibonacci, (fib_value, ), {})  # Return execution time and value for cached function
-uncached_execution_time, uncached_value = util_run_function_with_time(fibonacci, (fib_value, ), {})  # Return execution time and value for uncached function
+memoized_execution_time, memoized_value = util_run_function_with_time(memoized_fibonacci, (fib_value, ), {})  # Return execution time and value for memoized function
+unmemoized_execution_time, unmemoized_value = util_run_function_with_time(fibonacci, (fib_value, ), {})  # Return execution time and value for unmemoized function
 
-print(f"cached_execution_time: {cached_execution_time} - uncached_execution_time: {uncached_execution_time}")
+print(f"memoized_execution_time: {memoized_execution_time} - unmemoized_execution_time: {unmemoized_execution_time}")
 
-assert cached_execution_time < uncached_execution_time  # OK
-assert cached_value == uncached_value  # OK
+assert memoized_execution_time < unmemoized_execution_time  # OK
+assert memoized_value == unmemoized_value  # OK
 ```   
 
 ### Timeit Decorator
