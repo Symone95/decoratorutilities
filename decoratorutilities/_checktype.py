@@ -11,9 +11,9 @@ def checktype(fn):
     MODULE REFERENCE
         https://decoratorutilities.readthedocs.io/en/latest/rst_templates/Decorators/check_type_decorator.html
 
-    Decorate your own function with **@checktype** decorator to check parameters type
+    Decorate your own function or class method with **@checktype** decorator to check parameters type
 
-    :param fn:
+    :param fn: Decorated function or class method to check parameters for
     :return:
     """
 

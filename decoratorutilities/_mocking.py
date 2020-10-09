@@ -36,7 +36,7 @@ def mocking(mocks: list):
 
     Decorate your own function with **@mocking** decorator to mock that function adding args in a tuple, kwargs in a dict and return value
 
-    :param mocks:
+    :param mocks: List contains mocked *args, **kwargs and return
     :return:
     """
 
