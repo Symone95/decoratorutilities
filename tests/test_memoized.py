@@ -1,20 +1,20 @@
 import datetime
 
 import pytest
-from decoratorutilities import cached
+from decoratorutilities import memoized
 
 
 # def test_no_parameters():
 #
 #     """
-#     @cached
+#     @memoized
 #     def fun(p1: str):
 #         return p1
 #     """
 #
 #     call_count = 0
 #
-#     @cached
+#     @memoized
 #     def fn():
 #         global call_count
 #         call_count += 1
@@ -35,7 +35,7 @@ call_count_param2 = 0
 
 def test_with_parameters():
 
-    @cached
+    @memoized
     def fn(value: int):
         global call_count_param1
         global call_count_param2
@@ -65,17 +65,17 @@ def test_with_parameters():
     assert call_count_param2 == 1
 
 
-def test_cached_class():
+def test_memoized_class():
 
     class X(object):
 
-        @cached
+        @memoized
         def x(self):
             return 1
 
     class Y(object):
 
-        @cached
+        @memoized
         def x(self):
             return 2
 
@@ -83,17 +83,17 @@ def test_cached_class():
     assert Y().x() == 2
 
 
-def test_cached_class_parameters():
+def test_memoized_class_parameters():
 
     class X(object):
 
-        @cached
+        @memoized
         def x(self, value):
             return value
 
     class Y(object):
 
-        @cached
+        @memoized
         def x(self, value):
             return value
 
@@ -104,14 +104,14 @@ def test_cached_class_parameters():
     assert x.x(2) == 2
 
 
-def test_cached_class_attributes():
+def test_memoized_class_attributes():
 
     class X(object):
 
         def __init__(self, value):
             self.value = value
 
-        @cached
+        @memoized
         def x(self):
             return self.value
 
@@ -135,15 +135,15 @@ def util_run_function_with_time(fn, args, kwargs):
     
 def test_performance():
 
-    @cached
-    def cached_fibonacci(x):
+    @memoized
+    def memoized_fibonacci(x):
         if x == 0:
             return 0
 
         if x == 1:
             return 1
 
-        return cached_fibonacci(x - 1) + cached_fibonacci(x - 2)
+        return memoized_fibonacci(x - 1) + memoized_fibonacci(x - 2)
 
     def fibonacci(x):
         if x == 0:
@@ -155,11 +155,11 @@ def test_performance():
         return fibonacci(x - 1) + fibonacci(x - 2)
 
     fib_value = 20
-    cached_execution_time, cached_value = util_run_function_with_time(cached_fibonacci, (fib_value, ), {})
-    uncached_execution_time, uncached_value = util_run_function_with_time(fibonacci, (fib_value, ), {})
+    memoized_execution_time, memoized_value = util_run_function_with_time(memoized_fibonacci, (fib_value, ), {})
+    unmemoized_execution_time, unmemoized_value = util_run_function_with_time(fibonacci, (fib_value, ), {})
 
-    print(f"cached_execution_time: {cached_execution_time} - uncached_execution_time: {uncached_execution_time}")
+    print(f"memoized_execution_time: {memoized_execution_time} - unmemoized_execution_time: {unmemoized_execution_time}")
 
-    assert cached_execution_time < uncached_execution_time
-    assert cached_value == uncached_value
+    assert memoized_execution_time < unmemoized_execution_time
+    assert memoized_value == unmemoized_value
 """

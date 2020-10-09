@@ -14,7 +14,7 @@ def timeit(fn):
 
     Decorate your own function with **@timeit** decorator to monitoring execution time
 
-    :param fn:
+    :param fn: Decorated function or class method to monitoring execution time
     :return:
     """
 
