@@ -1,8 +1,8 @@
-****************
+******************
 Memoized Decorator
-****************
+******************
 
-| Decorate your own function with **@memoized** decorator to save return value in cache and reuse it for next time
+| Decorate your own function or class method with **@memoized** decorator to speed up it by storing the results and returning the cached result when the same inputs occur again
 | **Example:**
 
 .. code-block:: python

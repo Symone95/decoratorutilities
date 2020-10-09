@@ -15,15 +15,15 @@ def get_value_matching(memoized_value_handlers_map, args_tuple):
 def memoized(fn):
     """
     MODULE NAME
-        timeit
+        memoized
 
     MODULE REFERENCE
         https://decoratorutilities.readthedocs.io/en/latest/rst_templates/Decorators/memoized_decorator.html
 
-    Decorate your own function with **@memoized** decorator to save return value in memoized and reuse it for next time
+    Decorate your own function or class method with **@memoized** decorator to speed up it by storing the results and returning the cached result when the same inputs occur again
 
-    :param fn:
-    :return:
+    :param fn: Instance of decorated function or class method
+    :return: Return the execution of decorated function or class method
     """
     fn_name = f"{fn.__module__}.{fn.__qualname__}"
 
