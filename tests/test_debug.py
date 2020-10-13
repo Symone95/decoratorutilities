@@ -14,44 +14,44 @@ def test_add_function():
     with pytest.raises(TypeError):
         add('a', 1)
 
-# def test_function_debug_no_parameter():
 
-#     @debug
-#     def a():
-#         message = "Hello " + 5
-#         return message
+def test_function_debug_no_parameter():
 
-#     with pytest.raises(TypeError):
-#         a()
+    @debug
+    def a():
+        message = "Hello " + 5
+        return message
 
-
-# def test_function_debug_with_parameter():
-
-#     @debug
-#     def my_fun(param1: int):
-#         message = "Hello " + param1
-#         return message
-
-#     with pytest.raises(TypeError):
-#         my_fun(1)
+    with pytest.raises(TypeError):
+        a()
 
 
-# def test_class_debug_method():
+def test_function_debug_with_parameter():
 
-#     class A(object):
+    @debug
+    def my_fun(param1: int):
+        message = "Hello " + param1
+        return message
+    with pytest.raises(TypeError):
+        my_fun(1)
 
-#         @debug
-#         def __init__(self):
-#             self.message = "Hello " + 5
 
-#     class B(object):
+def test_class_debug_method():
 
-#         @debug
-#         def send_message(self, message: str, email_addresses: tuple):
-#             return message + email_addresses
+    class A(object):
 
-#     with pytest.raises(TypeError):
-#         A()
+        @debug
+        def __init__(self):
+            self.message = "Hello " + 5
 
-#     with pytest.raises(TypeError):
-#         B().send_message("My message", ("foe@gmail.com", "friend@gmail.com"))
+    class B(object):
+
+        @debug
+        def send_message(self, message: str, email_addresses: tuple):
+            return message + email_addresses
+
+    with pytest.raises(TypeError):
+        A()
+
+    with pytest.raises(TypeError):
+        B().send_message("My message", ("foe@gmail.com", "friend@gmail.com"))

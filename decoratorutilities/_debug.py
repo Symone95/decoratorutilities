@@ -1,6 +1,7 @@
 import sys
 import os
 
+
 def module_fn_definition(fn) -> str:
     return f"{fn.__module__}.{fn.__name__}"
 
@@ -39,7 +40,7 @@ def debug(fn):
         except Exception as e:
             exc_type, exc_obj, exc_tb = sys.exc_info()
 
-            fname = "/".join(os.path.split(exc_tb.tb_next.tb_frame.f_code.co_filename))
+            fname = os.path.sep.join(os.path.split(exc_tb.tb_next.tb_frame.f_code.co_filename))
             if fname.startswith(sys.path[0]):
                 fname = fname.replace(sys.path[0], "")
 
