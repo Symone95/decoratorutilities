@@ -4,6 +4,10 @@
 
 Please read our documentation here: [Readthedocs Reference](https://decoratorutilities.readthedocs.io/en/dev/)
 
+### Package Reference
+
+Our package reference link is: https://pypi.org/project/decoratorutilities
+
 ## Menu
 
 - [Intro](#intro)
@@ -31,74 +35,53 @@ pip install decoratorutilities
 
 ### Check Type Decorator
 
-Decorate your own function with **@checktype** decorator to check parameters type  
+Decorate your own functions with **@checktype** decorator to check parameters type and return type too
 **Example:**
 
 ```python
+from decoratorutilities import checktype
 import pytest
-from decoratorutilities import checktype
-
-@checktype
-def my_functon(a: int, b: int):
-    return 1
-
-# Valid usage
-my_functon(5, 6)  # return 1
-
-# Invalid usage
-my_functon("5", "6")  # Raises TypeError Exception
-my_functon("invalid", b="Invalid")  # Raises TypeError Exception
-my_functon(a="invalid", b="Invalid")  # Raises TypeError Exception
-
-# checktype decorator for classes methods
-class X(object):
-
-    @checktype
-    def x(self, value: int):
-        return value
-
-assert X().x(1) == 1
-
-with pytest.raises(TypeError):
-    X().x('1')  # Raises TypeError Exception
-```
-
-Decorate your own function with **@checktype** decorator to check return type too  
-**Example:**
-
-```python
-from decoratorutilities import checktype
 
 @checktype
 def my_functon(a: int, b: int) -> int:
-   return 1
+    return 1
 
-# Valid usage
-assert my_functon(5, 6) == 1  # return 1
+# Valid usage: Integer parameters and return type
+my_functon(5, 6)  # return 1
+assert my_functon(5, 6) == 1  # True
 
-# Invalid usage
-assert my_functon(5, 6) == "1"  # Raises TypeError Exception
+# Invalid usage: String parameters and return type
+with pytest.raises(TypeError):
+    my_functon("5", "6")  # Raises TypeError Exception
+with pytest.raises(TypeError):
+    my_functon("invalid", b="Invalid")  # Raises TypeError Exception
+with pytest.raises(TypeError):
+    my_functon(a="invalid", b="Invalid")  # Raises TypeError Exception
+with pytest.raises(TypeError):
+    assert my_functon(5, 6) == "1"  # Raises TypeError Exception
 ```
 
-Decorate your own class methods with **@checktype** decorator to check parameters and return type  
+Decorate your own class methods with **@checktype** decorator to check parameters type and return type too
 **Example:**
 
 ```python
-import pytest
 from decoratorutilities import checktype
+import pytest
 
 class X(object):
 
-    @checktype
-    def x(self, value: int):
+    @checktype  # checktype decorator for classes methods
+    def my_function(self, value: int):
         return value
 
-# Valid usage
-assert X().x(1) == 1  # True  
+# Valid usage: Integer parameters and return type
+assert X().my_function(1) == 1  # True
 
-# Invalid usage
+# Invalid usage: String parameters and return type
 with pytest.raises(TypeError):
-    X().x('1')  # Raises TypeError Exception
+    X().my_function('1')  # Raises TypeError Exception
+with pytest.raises(TypeError):
+    X().my_function(1) == "1"  # Raises TypeError Exception
 ```
 
 ### Overloading Decorator

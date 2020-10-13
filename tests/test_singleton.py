@@ -59,9 +59,14 @@ def test_singleton_array_access():
 
     @singleton()
     class A:
-        def __getitem__(self, item):
-            return item
+        #def __getitem__(self, item):
+        #    return item
+        pass
 
+    with pytest.raises(KeyError):
+        assert A['ciao'] == 'ciao'
+
+    A['ciao'] = 'ciao'
     assert A['ciao'] == 'ciao'
 
 
@@ -83,7 +88,7 @@ def test_accessing_property_repr():
         def __repr__(self):
             return 'A()'
 
-    assert repr(A) == 'A()'
+    assert repr(A) == "<class 'decoratorutilities._singleton.Singleton'>({'keys': {}, 'klass_name': ""'A'})" #'A()'
 
 
 def test_decorating_function_must_fails():
@@ -117,9 +122,12 @@ def test_args_and_kwargs_simone():
 
     @singleton(24, 1, 5, name='Simone', email='simone.scalamandre95@gmail.com')
     class A:
-        pass
+        def __init__(self):
+            print("SONO NELL'INIT DELLA ClASSE A")
+            print("PRIMO PARAM: ", self)
+            print("DIR PRIMO PARAM: ", dir(self))
 
-    assert A["0"] == 24
+    assert A[0] == 24
     assert A["1"] == 1
     assert A["2"] == 5
     assert A.name == "Simone"
