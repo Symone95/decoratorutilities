@@ -9,10 +9,17 @@ on:
   pull_request:
     branches: [ dev ]
 
+strategy:
+  matrix:
+    # run 2 copies of the current job in parallel
+    # and they will load balance all specs
+    os: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+
+
 jobs:
   build:
 
-    runs-on: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+    runs-on: ${{matrix.os}}
     strategy:
       matrix:
         python-version: [3.7, 3.8, 3.9]
