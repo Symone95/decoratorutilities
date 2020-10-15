@@ -10,77 +10,47 @@ class Singleton(object):
     """
 
     def __init__(self, klass, *args, **kwargs):
-        print("SONO NELL'INIT DEL SINGLETON")
-        #self.instance = klass  # ()
-        #self = klass  # ()
-        self.keys = {}
+        self.args = {}
         self.klass_name = klass.__name__
-
-        #print("ISTANZA: ", self.instance)
-        print("ARGS: ", args)
-        print("KWARGS: ", kwargs)
         if len(args) > 0:
             for index, arg in enumerate(args):
-                #setattr(self.instance, str(index), arg)
-                #setattr(self, str(index), arg)
                 self.__setitem__(str(index), arg)
-                #setattr(klass, str(index), arg)
 
         if len(kwargs) > 0:
             for kwarg in kwargs:
-                #setattr(self.instance, kwarg, kwargs[kwarg])
                 setattr(self, kwarg, kwargs[kwarg])
-                #setattr(klass, kwarg, kwargs[kwarg])
 
-        #self.instance()
-        #self()
-        klass()
-        print("OGGETTO PRONTO")
+        obj = klass()
+        self.__dict__.update(obj.__dict__)  # Merge args and kwargs with Singleton object
+
+        # Merge decorated class methods with Singleton object
+        object_methods = [method_name for method_name in dir(obj)
+                          if callable(getattr(obj, method_name))]
+        for m in object_methods:
+            if not m.startswith("__"):
+                setattr(self, m, getattr(obj, m))
 
     def __call__(self, *args, **kwargs):
         raise TypeError(f'\"{self.klass_name}\" object is a singleton not instantiable')
-        #raise TypeError(f'{self.instance.__name__} object is a singleton not instantiable')
 
-    """def __getattribute__(self, item):
-        print("GETATTRIBUTE: ", item)
-        #pass
-        #return self.__getitem__(item)
-        #return object.__getattribute__(item)
-        return getattr(self, item)  # item  #self.__getattribute__(item)"""
-
-    """
-    def __getattr__(self, item):
-        print("GET ATTR: ", item)
-        return super().__getattr__(item)
-        #pass
-        #return getattr(self, item)  #self.instance.__getattribute__(item) #self.__getattr__(item)  # [item]  # getattr(self.instance, item)  # self.keys[item]
-
-    def __setattr__(self, key, value):
-        print("SET ATTR: KEY: ", key, " - VALUE: ", value)
-        # self.keys[key] = value
-        #setattr(self, key, value)  # .instance
-        super().__setattr__(key, value)
-    """
     def __setitem__(self, key, value):
-        self.keys[key] = value
-        #setattr(self.instance, key, value)
-        #setattr(self, key, value)
+        self.args[key] = value
 
     def __getitem__(self, item):
         # If item is digit return item in "self.keys" dict with that index
         if isinstance(item, int):
-            if item <= len(self.keys):
-                return self.keys[str(item)]
+            if item <= len(self.args):
+                return self.args[str(item)]
             else:
                 raise IndexError(f"Index: \"{item}\" not found in {self.klass_name} class")
         elif isinstance(item, str):
-            if item in self.keys:
-                return self.keys[item]
+            if item in self.args:
+                return self.args[item]
             else:
                 raise KeyError(f"Key: \"{item}\" not found in {self.klass_name} class")
 
     def __delitem__(self, key):
-        del self.keys[key]
+        del self.args[key]
 
     def __str__(self):
         return self.klass_name
@@ -114,26 +84,10 @@ def singleton(*args, **kwargs):
     :raise: TypeError if klass is not a class method
     """
 
-    print("PRIMI ARGS: ", args)
-    print("PRIMI KWARGS: ", kwargs)
-
     @wraps(Singleton)
     def class_wrapper(klass):
 
-        print("PRIMI KLASS: ", klass)
-
-        """@wraps(klass)
-        def wrapper():
-            print("PRIMI KLASS: ", klass)
-            # If klass is not a class method raises TypeError exception
-            if not str(klass).startswith("<class "):
-                raise TypeError("Singleton decorator applicable on class methods only")
-            return Singleton(klass, *args, **kwargs)"""
-
-        print("SONO QUI 2")
         if not str(klass).startswith("<class "):
             raise TypeError("Singleton decorator applicable on class only")
-
         return Singleton(klass, *args, **kwargs)  # wrapper()
-    print("SONO QUI 1")
     return class_wrapper

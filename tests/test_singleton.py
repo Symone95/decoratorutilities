@@ -88,7 +88,7 @@ def test_accessing_property_repr():
         def __repr__(self):
             return 'A()'
 
-    assert repr(A) == "<class 'decoratorutilities._singleton.Singleton'>({'keys': {}, 'klass_name': ""'A'})" #'A()'
+    assert repr(A) == "<class 'decoratorutilities._singleton.Singleton'>({'args': {}, 'klass_name': ""'A'})" #'A()'
 
 
 def test_decorating_function_must_fails():

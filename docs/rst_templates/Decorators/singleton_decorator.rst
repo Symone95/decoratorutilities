@@ -5,7 +5,7 @@ Singleton Decorator
 | Decorate your own classes with **@singleton()** decorator to ensure that only one instance of the singleton class ever exists.
 | Never invoke **@singleton()** decorator without brackets otherwise it will cause problems
 | Define your `__init__()` class method without parameter, pass them to the **@singleton()** decorator in the format key = "value" like kwargs.
-| **Example:**
+| **Example with args and kwargs**
 
 .. code-block:: python
    :linenos:
@@ -13,44 +13,29 @@ Singleton Decorator
    import pytest
    from decoratorutilities import singleton
 
-   @singleton()
-    class A(object):
-        def __init__(self):
-            self.x = 10  # Define constant class attribute
-
-        def print_hello(self):  # Custom method
-            return "Hello World"
-
-    # Valid usage
-    assert A.x == 10  # True
-    assert A.print_hello() == "Hello World"  # True
-
-    with pytest.raises(TypeError):
-        # Invalid usare, brackets are missing
-        @singleton
-        class B(object):
-            def __init__(self):
-                self.x = 10
-
-        B()  # Raises TypeError Exception
-
-
-| **Example with key = "value" parameters**
-
-.. code-block:: python
-   :linenos:
-
-   from decoratorutilities import singleton
-
-   @singleton(x=10, message="Message to send", email=["simone.scalamandre95@gmail.com"])
+   @singleton(10, message="Message to send", email=["simone.scalamandre95@gmail.com"])
    class A(object):
-      pass
+       def __init__(self):
+           self.x = 50  # Define constant class attribute
+
+       def print_hello(self):  # Custom method
+           return "Hello World"
 
    # Valid usage
-   assert A.x == 10  # True
-   assert A.message == "Message to send"  # True
-   assert len(A.email) == 1  # True
+   assert A[0] == 10  # True -> Get first arg
+   assert A.x == 50  # True -> Get decorated class attribute
+   assert A.print_hello() == "Hello World"  # True -> Get decorated class method "print_hello()"
+   assert A.message == "Message to send"  # True -> Get kwarg "message" passed to Singleton decorator
    assert A.email == ["simone.scalamandre95@gmail.com"]  # True
+
+   with pytest.raises(TypeError):
+       # Invalid usage, brackets are missing
+       @singleton
+       class B(object):
+           def __init__(self):
+               self.x = 10
+
+       B()  # Raises TypeError Exception
 
 
 | We can define our singleton class with or without kwargs parameters but we can only instantiate one
