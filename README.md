@@ -35,7 +35,7 @@ pip install decoratorutilities
 
 ### Check Type Decorator
 
-Decorate your own functions with **@checktype** decorator to check parameters type and return type too
+Decorate your own functions with **@checktype** decorator to check parameters type and return type too  
 **Example:**
 
 ```python
@@ -61,7 +61,7 @@ with pytest.raises(TypeError):
     assert my_functon(5, 6) == "1"  # Raises TypeError Exception
 ```
 
-Decorate your own class methods with **@checktype** decorator to check parameters type and return type too
+Decorate your own class methods with **@checktype** decorator to check parameters type and return type too  
 **Example:**
 
 ```python
@@ -124,7 +124,6 @@ class X(object):
 assert X().x(1) == int  # True
 assert X().x('1') == str  # True
 ```
-
 
 ### Mocking Decorator
 
@@ -213,7 +212,6 @@ if __name__ == "__main__":
     hello()  # print "Execution time: 100.75 ms"
 ```
 
-
 ### Debug Decorator
 
 Decorate your own function with **@debug** decorator to print in console more Exception details  
@@ -256,7 +254,7 @@ Decorate your own classes with **@singleton()** decorator to ensure that only on
 Never invoke **@singleton()** decorator without brackets otherwise it will cause problems
 Define your class method `__init__()` without parameters, pass them to the **@singleton()** decorator
 
-**Example with args and kwargs**
+**Example with args and kwargs:**
 
 ```python
 import pytest
@@ -288,7 +286,7 @@ with pytest.raises(TypeError):
 ```
 
 We can define our singleton class with or without args and kwargs parameters but we can only instantiate one
-**Example**
+**Example:**
 
 ```python
 import pytest

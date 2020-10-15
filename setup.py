@@ -5,10 +5,10 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="decoratorutilities",
-    version="1.0.1",
+    version="1.0.2",
     author="Scalamandrè Simone, Giovanni Cardamone",
     author_email="simone.scalamandre@sourcesense.com, giovanni.cardamone@sourcesense.com",
-    description="Python library to user type guard utilities to check parameters and return type, allow function overloading and function mocking at runtime",
+    description="DecoratorUtilities is a python library that provides different utilities for functions and class methods such as to check parameters and return type, allow overloading, to cache results to speed up them, instantiate a Singleton object and mocking at runtime",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Symone95/decoratorutilities",
