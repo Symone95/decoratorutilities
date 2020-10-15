@@ -1,5 +1,12 @@
 # DecoratorUtilities
 
+![License](https://img.shields.io/pypi/l/decoratorutilities)
+![Python Version](https://img.shields.io/github/pipenv/locked/python-version/Symone95/decoratorutilities)
+[![Coverage Status](https://coveralls.io/repos/github/Symone95/decoratorutilities/badge.svg?branch=master)](https://coveralls.io/github/Symone95/decoratorutilities?branch=master)
+![Downloads](https://img.shields.io/pypi/dd/decoratorutilities)
+![Pypi Version](https://img.shields.io/pypi/v/decoratorutilities)
+![Code size](https://img.shields.io/github/languages/code-size/Symone95/decoratorutilities)
+
 ### Readthedocs Reference
 
 Please read our documentation here: [Readthedocs Reference](https://decoratorutilities.readthedocs.io/en/dev/)
