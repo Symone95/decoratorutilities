@@ -5,14 +5,14 @@ name: Python package
 
 on:
   push:
-    branches: [ fix_overload_decorator_for_class ]
+    branches: [ dev ]
   pull_request:
-    branches: [ fix_overload_decorator_for_class ]
+    branches: [ dev ]
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ['ubuntu-latest', 'windows-latest', 'macos-latest']
     strategy:
       matrix:
         python-version: [3.7, 3.8, 3.9]
