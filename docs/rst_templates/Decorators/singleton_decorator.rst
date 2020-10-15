@@ -4,8 +4,8 @@ Singleton Decorator
 
 | Decorate your own classes with **@singleton()** decorator to ensure that only one instance of the singleton class ever exists.
 | Never invoke **@singleton()** decorator without brackets otherwise it will cause problems
-| Define your `__init__()` class method without parameter, pass them to the **@singleton()** decorator in the format key = "value" like kwargs.
-| **Example with args and kwargs**
+| Define your `__init__()` class method without parameters, pass them to the **@singleton()** decorator
+| **Example with args and kwargs:**
 
 .. code-block:: python
    :linenos:

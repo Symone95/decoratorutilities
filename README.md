@@ -21,9 +21,9 @@ Our package reference link is: https://pypi.org/project/decoratorutilities
     - [Singleton Decorator](#singleton-decorator)
 
 ## Intro
-DecoratorUtilities is a python library to user type guard utilities 
-to check parameters and return type, allow function overloading 
-and function mocking at runtime
+DecoratorUtilities is a python library that provides different utilities for functions and class methods such as
+to check parameters and return type, allow overloading, to cache results to speed up them, instantiate a Singleton object
+and mocking at runtime
 
 ## Installation
 
