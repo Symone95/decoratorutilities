@@ -6,8 +6,8 @@ rm -rf dist/
 # Creating dist archives
 python3 setup.py sdist bdist_wheel
 
-# Upgrade "twine" module
-python3 -m pip install --user --upgrade twine
+# Upgrade "twine" module | --user
+python3 -m pip install --upgrade twine
 
 read -p "Enter environment to upload package[dev, pro]: " environment
 

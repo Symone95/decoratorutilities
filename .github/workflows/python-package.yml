@@ -5,17 +5,19 @@ name: Python package
 
 on:
   push:
-    branches: [ master ]
+    branches: [ dev ]
   pull_request:
-    branches: [ master ]
+    branches: [ dev ]
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ${{matrix.os}}
+
     strategy:
       matrix:
-        python-version: [3.5, 3.6, 3.7, 3.8]
+        os: [ 'ubuntu-latest', 'windows-latest', 'macos-latest' ]
+        python-version: [3.7, 3.8, 3.9]
 
     steps:
     - uses: actions/checkout@v2

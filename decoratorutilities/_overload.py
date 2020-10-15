@@ -22,10 +22,10 @@ def is_matching_signature(args_tuple, signature, handler) -> bool:
     """
     Funzione per il controllo del match tra gli args/kwargs e la funzione passati
 
-    :param args_tuple:
-    :param signature:
-    :param handler:
-    :return:
+    :param args_tuple: Tuple that contains *args and **kwargs
+    :param signature: Signature of decorated function or class method
+    :param handler: Execution of decorated function or class method
+    :return: Return True if find signature in handlers_map else False
     """
     args, kwargs = args_tuple
 
@@ -33,9 +33,17 @@ def is_matching_signature(args_tuple, signature, handler) -> bool:
         return False
 
     if len(args):
+        mod = handler.__qualname__.replace(f".{handler.__name__}", "")
         for value, (_key, _type) in zip(args, signature.items()):
-            if not isinstance(value, _type):
-                return False
+            is_method = mod in value.__class__.__qualname__
+            if not is_method:
+                # Here is a function
+                if not isinstance(value, _type):
+                    return False
+            else:
+                # Here is a class method
+                if not isinstance(args[1], _type):
+                    return False
 
     if len(kwargs):
         for arg_name in kwargs:
@@ -50,7 +58,7 @@ def is_matching_signature(args_tuple, signature, handler) -> bool:
 
 def signature_already_exists(searching_signature, handlers_map):
     """
-    Funzione per il controllo dell'esistenza della firma della funzione passata con quelle salvate nella mappa "handlers_map"
+    Checking the existence of the function signature passed with those saved in the "handlers_map" map
 
     :param searching_signature:
     :param handlers_map:
@@ -65,10 +73,16 @@ def signature_already_exists(searching_signature, handlers_map):
 
 def overload(fn):
     """
-    Funzione per poter eseguire l'overload di una funzione
+    MODULE NAME
+        overload
 
-    :param fn:
-    :return:
+    MODULE REFERENCE
+        https://decoratorutilities.readthedocs.io/en/latest/rst_templates/Decorators/overloading_decorator.html
+
+    Decorate your own function or class method with **@overload** decorator to define multiple functions with same name but with different parameters
+
+    :param fn: Decorated function or class method to overload
+    :return: Return the execution of function or class method
     """
     fn_name = f"{fn.__module__}.{fn.__qualname__}"
 

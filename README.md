@@ -4,6 +4,10 @@
 
 Please read our documentation here: [Readthedocs Reference](https://decoratorutilities.readthedocs.io/en/dev/)
 
+### Package Reference
+
+Our package reference link is: https://pypi.org/project/decoratorutilities
+
 ## Menu
 
 - [Intro](#intro)
@@ -12,14 +16,14 @@ Please read our documentation here: [Readthedocs Reference](https://decoratoruti
     - [Check Type Decorator](#check_type_decorator)
     - [Overloading Decorator](#overloading_decorator)
     - [Mocking Decorator](#mocking-decorator)
-    - [Cached Decorator](#cached-decorator)
+    - [Memoized Decorator](#memoized-decorator)
     - [Timeit Decorator](#timeit-decorator)
     - [Singleton Decorator](#singleton-decorator)
 
 ## Intro
-DecoratorUtilities is a python library to user type guard utilities 
-to check parameters and return type, allow function overloading 
-and function mocking at runtime
+DecoratorUtilities is a python library that provides different utilities for functions and class methods such as
+to check parameters and return type, allow overloading, to cache results to speed up them, instantiate a Singleton object
+and mocking at runtime
 
 ## Installation
 
@@ -31,74 +35,53 @@ pip install decoratorutilities
 
 ### Check Type Decorator
 
-Decorate your own function with **@checktype** decorator to check parameters type  
+Decorate your own functions with **@checktype** decorator to check parameters type and return type too  
 **Example:**
 
 ```python
+from decoratorutilities import checktype
 import pytest
-from decoratorutilities import checktype
-
-@checktype
-def my_functon(a: int, b: int):
-    return 1
-
-# Valid usage
-my_functon(5, 6)  # return 1
-
-# Invalid usage
-my_functon("5", "6")  # Raises TypeError Exception
-my_functon("invalid", b="Invalid")  # Raises TypeError Exception
-my_functon(a="invalid", b="Invalid")  # Raises TypeError Exception
-
-# checktype decorator for classes methods
-class X(object):
-
-    @checktype
-    def x(self, value: int):
-        return value
-
-assert X().x(1) == 1
-
-with pytest.raises(TypeError):
-    X().x('1')  # Raises TypeError Exception
-```
-
-Decorate your own function with **@checktype** decorator to check return type too  
-**Example:**
-
-```python
-from decoratorutilities import checktype
 
 @checktype
 def my_functon(a: int, b: int) -> int:
-   return 1
+    return 1
 
-# Valid usage
-assert my_functon(5, 6) == 1  # return 1
+# Valid usage: Integer parameters and return type
+my_functon(5, 6)  # return 1
+assert my_functon(5, 6) == 1  # True
 
-# Invalid usage
-assert my_functon(5, 6) == "1"  # Raises TypeError Exception
+# Invalid usage: String parameters and return type
+with pytest.raises(TypeError):
+    my_functon("5", "6")  # Raises TypeError Exception
+with pytest.raises(TypeError):
+    my_functon("invalid", b="Invalid")  # Raises TypeError Exception
+with pytest.raises(TypeError):
+    my_functon(a="invalid", b="Invalid")  # Raises TypeError Exception
+with pytest.raises(TypeError):
+    assert my_functon(5, 6) == "1"  # Raises TypeError Exception
 ```
 
-Decorate your own class methods with **@checktype** decorator to check parameters and return type  
+Decorate your own class methods with **@checktype** decorator to check parameters type and return type too  
 **Example:**
 
 ```python
-import pytest
 from decoratorutilities import checktype
+import pytest
 
 class X(object):
 
-    @checktype
-    def x(self, value: int):
+    @checktype  # checktype decorator for classes methods
+    def my_function(self, value: int):
         return value
 
-# Valid usage
-assert X().x(1) == 1  # True  
+# Valid usage: Integer parameters and return type
+assert X().my_function(1) == 1  # True
 
-# Invalid usage
+# Invalid usage: String parameters and return type
 with pytest.raises(TypeError):
-    X().x('1')  # Raises TypeError Exception
+    X().my_function('1')  # Raises TypeError Exception
+with pytest.raises(TypeError):
+    X().my_function(1) == "1"  # Raises TypeError Exception
 ```
 
 ### Overloading Decorator
@@ -121,6 +104,25 @@ def my_functon(a:str):
 my_functon(1)
 # Invoke second my_functon and return 2
 my_functon('1')
+```
+
+Decorate your own class method with **@overload** decorator to define multiple class methods with same name but with different parameters  
+**Example:**
+
+```python
+from decoratorutilities import overload
+
+class X(object):
+    @overload
+    def x(self, x: int):
+        return int
+
+    @overload
+    def x(self, x: str):
+        return str
+
+assert X().x(1) == int  # True
+assert X().x('1') == str  # True
 ```
 
 ### Mocking Decorator
@@ -147,13 +149,13 @@ assert a(4, 5, 6, b=2) == 2  # return 2
 assert a(7, 8, 9, c=1) == 1  # Raises KeyError Exception
 ```
 
-### Cached Decorator
+### Memoized Decorator
 
-Decorate your own function with **@cached** decorator to save return value in cache and reuse it for next time  
+Decorate your own function or class method with **@memoized** decorator to speed up it by storing the results and returning the cached result when the same inputs occur again  
 **Example:**
 
 ```python
-from decoratorutilities import cached
+from decoratorutilities import memoized
 import datetime
 
 def util_run_function_with_time(fn, args, kwargs):
@@ -162,15 +164,15 @@ def util_run_function_with_time(fn, args, kwargs):
     end_time = datetime.datetime.now()
     return (end_time - start_time), tmp
 
-@cached
-def cached_fibonacci(x):
+@memoized
+def memoized_fibonacci(x):
     if x == 0:
         return 0
 
     if x == 1:
         return 1
 
-    return cached_fibonacci(x - 1) + cached_fibonacci(x - 2)
+    return memoized_fibonacci(x - 1) + memoized_fibonacci(x - 2)
 
 def fibonacci(x):
     if x == 0:
@@ -182,13 +184,13 @@ def fibonacci(x):
     return fibonacci(x - 1) + fibonacci(x - 2)
 
 fib_value = 20
-cached_execution_time, cached_value = util_run_function_with_time(cached_fibonacci, (fib_value, ), {})  # Return execution time and value for cached function
-uncached_execution_time, uncached_value = util_run_function_with_time(fibonacci, (fib_value, ), {})  # Return execution time and value for uncached function
+memoized_execution_time, memoized_value = util_run_function_with_time(memoized_fibonacci, (fib_value, ), {})  # Return execution time and value for memoized function
+unmemoized_execution_time, unmemoized_value = util_run_function_with_time(fibonacci, (fib_value, ), {})  # Return execution time and value for unmemoized function
 
-print(f"cached_execution_time: {cached_execution_time} - uncached_execution_time: {uncached_execution_time}")
+print(f"memoized_execution_time: {memoized_execution_time} - unmemoized_execution_time: {unmemoized_execution_time}")
 
-assert cached_execution_time < uncached_execution_time  # OK
-assert cached_value == uncached_value  # OK
+assert memoized_execution_time < unmemoized_execution_time  # OK
+assert memoized_value == unmemoized_value  # OK
 ```   
 
 ### Timeit Decorator
@@ -209,7 +211,6 @@ def hello():
 if __name__ == "__main__":
     hello()  # print "Execution time: 100.75 ms"
 ```
-
 
 ### Debug Decorator
 
@@ -251,28 +252,31 @@ with pytest.raises(TypeError):
 
 Decorate your own classes with **@singleton()** decorator to ensure that only one instance of the singleton class ever exists.
 Never invoke **@singleton()** decorator without brackets otherwise it will cause problems
-Define your class method `__init__()` without parameter, pass them to the **@singleton()** decorator in the format "key" = "value" like kwargs.
+Define your class method `__init__()` without parameters, pass them to the **@singleton()** decorator
 
-**Example:**
+**Example with args and kwargs:**
 
 ```python
 import pytest
 from decoratorutilities import singleton
 
-@singleton()
+@singleton(10, message="Message to send", email=["simone.scalamandre95@gmail.com"])
 class A(object):
     def __init__(self):
-        self.x = 10  # Define constant class attribute
+        self.x = 50  # Define constant class attribute
 
     def print_hello(self):  # Custom method
         return "Hello World"
 
 # Valid usage
-assert A.x == 10  # True
-assert A.print_hello() == "Hello World"  # True
+assert A[0] == 10  # True -> Get first arg
+assert A.x == 50  # True -> Get decorated class attribute
+assert A.print_hello() == "Hello World"  # True -> Get decorated class method "print_hello()"
+assert A.message == "Message to send"  # True -> Get kwarg "message" passed to Singleton decorator
+assert A.email == ["simone.scalamandre95@gmail.com"]  # True
 
 with pytest.raises(TypeError):
-    # Invalid usare, brackets are missing
+    # Invalid usage, brackets are missing
     @singleton
     class B(object):
         def __init__(self):
@@ -281,25 +285,8 @@ with pytest.raises(TypeError):
     B()  # Raises TypeError Exception
 ```
 
-**Example with key = "value" parameters**
-
-```python
-from decoratorutilities import singleton
-
-@singleton(x=10, message="Message to send", email=["simone.scalamandre95@gmail.com"])
-class A(object):
- pass
-
-# Valid usage
-assert A.x == 10  # True
-assert A.message == "Message to send"  # True
-assert len(A.email) == 1  # True
-assert A.email == ["simone.scalamandre95@gmail.com"]  # True
-```
-
-
-We can define our singleton class with or without kwargs parameters but we can only instantiate one
-**Example**
+We can define our singleton class with or without args and kwargs parameters but we can only instantiate one
+**Example:**
 
 ```python
 import pytest

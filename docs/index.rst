@@ -6,9 +6,9 @@
 Welcome to decoratorutilities's documentation!
 ==============================================
 
-DecoratorUtilities is a python library to user type guard utilities
-to check parameters and return type, allow function overloading
-and function mocking at runtime
+DecoratorUtilities is a python library that provides different utilities for functions and class methods such as
+to check parameters and return type, allow overloading, to cache results to speed up them, instantiate a Singleton object
+and mocking at runtime
 
 .. toctree::
    :numbered:
@@ -23,7 +23,7 @@ and function mocking at runtime
    rst_templates/Decorators/check_type_decorator
    rst_templates/Decorators/overloading_decorator
    rst_templates/Decorators/mocking_decorator
-   rst_templates/Decorators/cached_decorator
+   rst_templates/Decorators/memoized_decorator
    rst_templates/Decorators/timeit_decorator
    rst_templates/Decorators/debug_decorator
    rst_templates/Decorators/singleton_decorator
