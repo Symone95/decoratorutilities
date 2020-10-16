@@ -10,5 +10,5 @@ script:
 
 os: osx
 
-#virtualenv:
-#  system_site_packages: true
+virtualenv:
+  system_site_packages: true
