@@ -1,1 +1,26 @@
-"publishConfig": { "registry": "https://npm.pkg.github.com/" }
+{
+  "name": "@Symone95/decoratorutilities",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "description": "DecoratorUtilities is a python library that provides different utilities for functions and class methods such as\nto check parameters and return type, allow overloading, to cache results to speed up them, instantiate a Singleton object\nand mocking at runtime",
+  "version": "1.0.2",
+  "main": "dist/index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Symone95/decoratorutilities.git"
+  },
+  "author": "simone.scalamandre95@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Symone95/decoratorutilities/issues"
+  },
+  "homepage": "https://github.com/Symone95/decoratorutilities#readme"
+}
