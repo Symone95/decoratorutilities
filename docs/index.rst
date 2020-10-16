@@ -6,6 +6,24 @@
 Welcome to decoratorutilities's documentation!
 ==============================================
 
+.. image:: https://img.shields.io/pypi/l/decoratorutilities
+   :target: https://img.shields.io/pypi/l/decoratorutilities  :alt: License
+
+.. image:: https://img.shields.io/github/pipenv/locked/python-version/Symone95/decoratorutilities
+   :target: https://img.shields.io/github/pipenv/locked/python-version/Symone95/decoratorutilities  :alt: Python Version
+
+.. image:: https://coveralls.io/repos/github/Symone95/decoratorutilities/badge.svg?branch=dev
+   :target: https://coveralls.io/github/Symone95/decoratorutilities?branch=dev  :alt: Coveralls github
+
+.. image:: https://img.shields.io/pypi/dd/decoratorutilities
+   :target: https://img.shields.io/pypi/dd/decoratorutilities  :alt: Downloads
+
+.. image:: https://img.shields.io/pypi/v/decoratorutilities
+   :target: https://img.shields.io/pypi/dd/decoratorutilities  :alt: Pypi Version
+
+.. image:: https://img.shields.io/github/languages/code-size/Symone95/decoratorutilities
+   :target: https://img.shields.io/github/languages/code-size/Symone95/decoratorutilities  :alt: Code size
+
 DecoratorUtilities is a python library that provides different utilities for functions and class methods such as
 to check parameters and return type, allow overloading, to cache results to speed up them, instantiate a Singleton object
 and mocking at runtime
