@@ -75,7 +75,6 @@ Singleton Decorator
    class A:
        def __init__(self):
            self.file_name = "filename.txt"  # set file name
-           self.file_mode = "r+"  # set file mode
 
    # Open, read and write your file
    with A as f:
