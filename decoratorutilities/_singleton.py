@@ -59,10 +59,10 @@ class Singleton(object):
         return "%s(%r)" % (self.__class__, self.__dict__)
 
     def __enter__(self):
-        if hasattr(self, "file_name") and hasattr(self, "file_mode"):
-            self.fp = open(self.file_name, self.file_mode)
+        if hasattr(self, "file_name"): # and hasattr(self, "file_mode"):
+            self.fp = open(self.file_name, "r+")#self.file_mode)
         else:
-            raise KeyError("file_name or file_mode not defined, please insert \"file_name\" and \"file_mode\"")
+            raise KeyError("file_name not defined, please insert \"file_name\"") # or file_mode  -  and \"file_mode\"
         return self.fp  # self.instance
 
     def __exit__(self, exc_type, exc_val, exc_tb):
