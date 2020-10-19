@@ -24,6 +24,13 @@ Welcome to decoratorutilities's documentation!
 .. image:: https://img.shields.io/github/languages/code-size/Symone95/decoratorutilities
    :target: https://img.shields.io/github/languages/code-size/Symone95/decoratorutilities  :alt: Code size
 
+.. image:: https://img.shields.io/readthedocs/decoratorutilities
+   :target: https://img.shields.io/readthedocs/decoratorutilities  :alt: Read the docs
+
+.. image:: https://img.shields.io/pypi/wheel/decoratorutilities
+   :target: https://img.shields.io/pypi/wheel/decoratorutilities  :alt: Wheel
+
+
 DecoratorUtilities is a python library that provides different utilities for functions and class methods such as
 to check parameters and return type, allow overloading, to cache results to speed up them, instantiate a Singleton object
 and mocking at runtime

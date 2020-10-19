@@ -62,3 +62,26 @@ Singleton Decorator
 
    with pytest.raises(TypeError):
       B()  # Raise TypeError Exception
+
+
+| Read and write files in your Singleton instance
+| **Example:**
+.. code-block:: python
+   :linenos:
+
+   from decoratorutilities import singleton
+
+   @singleton()
+   class A:
+       def __init__(self):
+           self.file_name = "filename.txt"  # set file name
+           self.file_mode = "r+"  # set file mode
+
+   # Open, read and write your file
+   with A as f:
+       f.write("New test")
+       file_lines = f.readlines()
+   f.close()  # Close file
+
+   for line in file_lines:
+       print(line)

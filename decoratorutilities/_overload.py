@@ -42,15 +42,15 @@ def is_matching_signature(args_tuple, signature, handler) -> bool:
                     return False
             else:
                 # Here is a class method
-                if not isinstance(args[1], _type):
+                if len(args) > 1 and not isinstance(args[1], _type):
                     return False
 
     if len(kwargs):
-        for arg_name in kwargs:
-            if arg_name not in signature:
+        for kwarg_name in kwargs:
+            if kwarg_name not in signature:
                 return False
 
-            if not isinstance(kwargs[arg_name], signature[arg_name]):
+            if not isinstance(kwargs[kwarg_name], signature[kwarg_name]):
                 return False
 
     return True

@@ -6,6 +6,8 @@
 ![Downloads](https://img.shields.io/pypi/dd/decoratorutilities)
 ![Pypi Version](https://img.shields.io/pypi/v/decoratorutilities)
 ![Code size](https://img.shields.io/github/languages/code-size/Symone95/decoratorutilities)
+![Read the docs](https://img.shields.io/readthedocs/decoratorutilities)
+![Wheel](https://img.shields.io/pypi/wheel/decoratorutilities)
 
 ### Readthedocs Reference
 
@@ -314,4 +316,25 @@ with pytest.raises(TypeError) as e:
 
 with pytest.raises(TypeError):
     B()  # Raises TypeError Exception
+```
+
+Read and write files in your Singleton instance  
+**Example:**
+```python
+from decoratorutilities import singleton
+
+@singleton()
+class A:
+    def __init__(self):
+        self.file_name = "filename.txt"  # set file name
+        self.file_mode = "r+"  # set file mode
+
+# Open, read and write your file
+with A as f:
+    f.write("New test")
+    file_lines = f.readlines()
+f.close()  # Close file
+
+for line in file_lines:
+    print(line)
 ```

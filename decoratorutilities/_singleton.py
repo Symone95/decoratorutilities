@@ -50,7 +50,7 @@ class Singleton(object):
                 raise KeyError(f"Key: \"{item}\" not found in {self.klass_name} class")
 
     def __delitem__(self, key):
-        del self.args[key]
+        del self.args[str(key)]  # self.args[list(self.args)[key]]
 
     def __str__(self):
         return self.klass_name
@@ -59,8 +59,11 @@ class Singleton(object):
         return "%s(%r)" % (self.__class__, self.__dict__)
 
     def __enter__(self):
-        self.fp = open(self.filename, "a+")
-        return self.instance
+        if hasattr(self, "file_name") and hasattr(self, "file_mode"):
+            self.fp = open(self.file_name, self.file_mode)
+        else:
+            raise KeyError("file_name or file_mode not defined, please insert \"file_name\" and \"file_mode\"")
+        return self.fp  # self.instance
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.fp.close()

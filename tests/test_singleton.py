@@ -98,6 +98,42 @@ def test_decorating_function_must_fails():
         def A():
             pass
 
+
+def test_with_open_file():
+    @singleton()
+    class A:
+        def __init__(self):
+            self.file_name = "filename.txt"  # set file name
+            self.file_mode = "r+"  # set file mode
+
+    # Open and read file
+    with A as f:
+        f.write("New test")
+        file_lines = f.readlines()
+    f.close()  # Close file
+
+    for line in file_lines:
+        print(line)
+
+
+
+def test_index_error_args_not_in_class():
+
+    @singleton(24, 1, 5, name='Simone', email='simone.scalamandre95@gmail.com')
+    class A:
+        pass
+
+    del A[0]
+
+    with pytest.raises(KeyError):
+        A[0]  # Raises KeyError because not find attribute at index 0
+
+    with pytest.raises(KeyError):
+        A["0"]  # Raises KeyError because not find attribute with key "0"
+
+    with pytest.raises(IndexError):
+        A[5]  # Raises IndexError because not find attribute at index 5
+
 """
 def test_args_and_kwargs():
 

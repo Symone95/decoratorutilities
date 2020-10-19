@@ -123,3 +123,33 @@ def test_overload_with_class_methods():
 
     assert X().x(1) == int
     assert X().x('1') == str
+
+
+def test_kwarg_not_in_signature():
+
+    class X:
+        @overload
+        def x(self, x: int):
+            return int
+
+        @overload
+        def x(self, x: str):
+            return str
+
+    with pytest.raises(ValueError):
+        assert X().x(b='1') == str  # Raises ValueError for kwargs is not in "x" method signature
+
+
+def test_kwarg_not_instance_in_signature():
+
+    class X:
+        @overload
+        def x(self, x: int):
+            return int
+
+        @overload
+        def x(self, x: str):
+            return str
+
+    with pytest.raises(ValueError):
+        assert X().x(x=[1]) == str  # Raises ValueError for kwargs are not instance defined "x" method signature
