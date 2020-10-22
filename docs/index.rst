@@ -9,8 +9,8 @@ Welcome to decoratorutilities's documentation!
 .. image:: https://img.shields.io/pypi/l/decoratorutilities
    :target: https://img.shields.io/pypi/l/decoratorutilities  :alt: License
 
-.. image:: https://img.shields.io/github/pipenv/locked/python-version/Symone95/decoratorutilities
-   :target: https://img.shields.io/github/pipenv/locked/python-version/Symone95/decoratorutilities  :alt: Python Version
+.. image:: https://img.shields.io/github/pipenv/locked/python-version/Symone95/decoratorutilities?logo=python
+   :target: https://img.shields.io/github/pipenv/locked/python-version/Symone95/decoratorutilities?logo=python  :alt: Python Version
 
 .. image:: https://coveralls.io/repos/github/Symone95/decoratorutilities/badge.svg?branch=dev
    :target: https://coveralls.io/github/Symone95/decoratorutilities?branch=dev  :alt: Coveralls github
@@ -18,14 +18,14 @@ Welcome to decoratorutilities's documentation!
 .. image:: https://img.shields.io/pypi/dd/decoratorutilities
    :target: https://img.shields.io/pypi/dd/decoratorutilities  :alt: Downloads
 
-.. image:: https://img.shields.io/pypi/v/decoratorutilities
-   :target: https://img.shields.io/pypi/dd/decoratorutilities  :alt: Pypi Version
+.. image:: https://img.shields.io/pypi/v/decoratorutilities?logo=python
+   :target: https://img.shields.io/pypi/dd/decoratorutilities?logo=python  :alt: Pypi Version
 
 .. image:: https://img.shields.io/github/languages/code-size/Symone95/decoratorutilities
    :target: https://img.shields.io/github/languages/code-size/Symone95/decoratorutilities  :alt: Code size
 
-.. image:: https://img.shields.io/readthedocs/decoratorutilities
-   :target: https://img.shields.io/readthedocs/decoratorutilities  :alt: Read the docs
+.. image:: https://img.shields.io/readthedocs/decoratorutilities?logo=Read%20the%20docs
+   :target: https://img.shields.io/readthedocs/decoratorutilities?logo=Read%20the%20docs  :alt: Read the docs
 
 .. image:: https://img.shields.io/pypi/wheel/decoratorutilities
    :target: https://img.shields.io/pypi/wheel/decoratorutilities  :alt: Wheel

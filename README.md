@@ -1,12 +1,12 @@
 # DecoratorUtilities
 
 ![License](https://img.shields.io/pypi/l/decoratorutilities)
-![Python Version](https://img.shields.io/github/pipenv/locked/python-version/Symone95/decoratorutilities)
+![Python Version](https://img.shields.io/github/pipenv/locked/python-version/Symone95/decoratorutilities?logo=python)
 [![Coverage Status](https://coveralls.io/repos/github/Symone95/decoratorutilities/badge.svg?branch=dev)](https://coveralls.io/github/Symone95/decoratorutilities?branch=dev)
 ![Downloads](https://img.shields.io/pypi/dd/decoratorutilities)
-![Pypi Version](https://img.shields.io/pypi/v/decoratorutilities)
+![Pypi Version](https://img.shields.io/pypi/v/decoratorutilities?logo=python)
 ![Code size](https://img.shields.io/github/languages/code-size/Symone95/decoratorutilities)
-![Read the docs](https://img.shields.io/readthedocs/decoratorutilities)
+![Read the docs](https://img.shields.io/readthedocs/decoratorutilities?logo=Read%20the%20docs)
 ![Wheel](https://img.shields.io/pypi/wheel/decoratorutilities)
 
 ### Readthedocs Reference
